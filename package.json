@@ -1,0 +1,32 @@
+{
+  "name": "elevenlabs-node",
+  "version": "1.0.0",
+  "description": "Unofficial Eleven Labs NodeJS library for converting text to speech using the Eleven Labs API.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FelixWaweru/elevenlabs-node.git"
+  },
+  "keywords": [
+    "api",
+    "eleven-labs",
+    "text",
+    "to",
+    "speech",
+    "ai",
+    "voice"
+  ],
+  "author": "Felix Waweru",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/FelixWaweru/elevenlabs-node/issues"
+  },
+  "homepage": "https://github.com/FelixWaweru/elevenlabs-node#readme",
+  "dependencies": {
+    "axios": "^1.3.4",
+    "fs": "^0.0.1-security"
+  }
+}
