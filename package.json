@@ -1,7 +1,7 @@
 {
   "name": "elevenlabs-node",
   "version": "1.0.0",
-  "description": "Unofficial Eleven Labs NodeJS library for converting text to speech using the Eleven Labs API.",
+  "description": "This is an open source Eleven Labs NodeJS package for converting text to speech using the Eleven Labs API",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
