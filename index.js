@@ -52,7 +52,7 @@ const textToSpeech = async (apiKey, voiceID, fileName, textInput, stability, sim
 		response.data.pipe(fs.createWriteStream(fileName));
 
 		return {
-			status: 'OK'
+			status: 'ok'
 		};
 
 	} catch (error) {
