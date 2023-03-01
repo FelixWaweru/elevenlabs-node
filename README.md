@@ -41,7 +41,7 @@ This is an open source Eleven Labs NodeJS package for converting text to speech 
 | <div style="width:290px">Function</div> | Parameters                                                            | Endpoint                              |
 | --------------------------------------- | --------------------------------------------------------------------- | ------------------------------------- |
 |  `textToSpeech`                         | (apiKey, voiceID, fileName, textInput, stability, similarityBoost)    | `/v1/text-to-speech/{voice_id}`       |
-|  `textToSpeechStream`                   | (apiKey, voiceID, fileName, textInput, stability, similarityBoost)    | `/v1/text-to-speech/{voice_id}/stream`|
+|  `textToSpeechStream`                   | (apiKey, voiceID, textInput, stability, similarityBoost)              | `/v1/text-to-speech/{voice_id}/stream`|
 |  `getVoices`                            | (apiKey)                                                              | `/v1/voices`                          |
 |  `getDefaultVoiceSettings`              | N/A                                                                   | `/v1/voices/settings/default`         |
 |  `getVoiceSettings`                     | (apiKey, voiceID)                                                     | `/v1/voices/{voice_id}/settings`      |
