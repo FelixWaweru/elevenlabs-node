@@ -56,7 +56,7 @@ const textToSpeech = async (apiKey, voiceID, fileName, textInput, stability, sim
 		};
 
 	} catch (error) {
-		console.error(error);
+		console.log(error);
 	}
 };
 
@@ -108,7 +108,7 @@ const textToSpeechStream = async (apiKey, voiceID, textInput, stability, similar
 		return response.data;
 
 	} catch (error) {
-		console.error(error);
+		console.log(error);
 	}
 };
 
@@ -140,7 +140,7 @@ const getVoices = async (apiKey) => {
 		return response.data;
 
 	} catch (error) {
-		console.error(error);
+		console.log(error);
 	}
 };
 
@@ -163,7 +163,7 @@ const getDefaultVoiceSettings = async () => {
 		return response.data;
 
 	} catch (error) {
-		console.error(error);
+		console.log(error);
 	}
 };
 
@@ -197,7 +197,7 @@ const getVoiceSettings = async (apiKey, voiceID) => {
 		return response.data;
 
 	} catch (error) {
-		console.error(error);
+		console.log(error);
 	}
 };
 
@@ -231,7 +231,7 @@ const getVoice = async (apiKey, voiceID) => {
 		return response.data;
 
 	} catch (error) {
-		console.error(error);
+		console.log(error);
 	}
 };
 
@@ -265,7 +265,7 @@ const deleteVoice = async (apiKey, voiceID) => {
 		return response.data;
 
 	} catch (error) {
-		console.error(error);
+		console.log(error);
 	}
 };
 
@@ -309,7 +309,7 @@ const editVoiceSettings = async (apiKey, voiceID, stability, similarityBoost) =>
 		return response.data;
 
 	} catch (error) {
-		console.error(error);
+		console.log(error);
 	}
 };
 
