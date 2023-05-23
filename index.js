@@ -18,11 +18,11 @@ Function that converts text to speech and saves the audio file to the specified 
 
 @param {number} similarityBoost - The similarity boost setting for the voice.
 
-@param {string} model_id - The model to use for the text-to-speech conversion. If null, it will use elevenlab's default model.
+@param {string} modelId - The model to use for the text-to-speech conversion. If null, it will use elevenlab's default model.
 
 @returns {Object} - An object containing the status of the operation.
 */
-const textToSpeech = async (apiKey, voiceID, fileName, textInput, stability, similarityBoost, model_id = "eleven_monolingual_v1") => {
+const textToSpeech = async (apiKey, voiceID, fileName, textInput, stability, similarityBoost, modelId = "eleven_monolingual_v1") => {
 	try {
 
 		if (!apiKey || !voiceID || !fileName || !textInput) {
@@ -42,7 +42,7 @@ const textToSpeech = async (apiKey, voiceID, fileName, textInput, stability, sim
 					stability: stabilityValue,
 					similarity_boost: similarityBoostValue
 				},
-				model_id: model_id ? model_id : undefined
+				model_id: modelId ? modelId : undefined
 			},
 			headers: {
 				'Accept': 'audio/mpeg',
@@ -77,11 +77,11 @@ Function that converts text to speech and returns a readable stream of the audio
 
 @param {number} similarityBoost - The similarity boost setting for the voice.
 
-@param {string} model_id - The model to use for the text-to-speech conversion. If null, it will use elevenlab's default model.
+@param {string} modelId - The model to use for the text-to-speech conversion. If null, it will use elevenlab's default model.
 
 @returns {Object} - A readable stream of the audio data.
 */
-const textToSpeechStream = async (apiKey, voiceID, textInput, stability, similarityBoost, model_id) => {
+const textToSpeechStream = async (apiKey, voiceID, textInput, stability, similarityBoost, modelId) => {
 	try {
 
 		if (!apiKey || !voiceID || !textInput) {
@@ -101,7 +101,7 @@ const textToSpeechStream = async (apiKey, voiceID, textInput, stability, similar
 					stability: stabilityValue,
 					similarity_boost: similarityBoostValue
 				},
-				model_id: model_id ? model_id : undefined
+				model_id: modelId ? modelId : undefined
 			},
 			headers: {
 				'Accept': 'audio/mpeg',
