@@ -22,7 +22,7 @@ Function that converts text to speech and saves the audio file to the specified 
 
 @returns {Object} - An object containing the status of the operation.
 */
-const textToSpeech = async (apiKey, voiceID, fileName, textInput, stability, similarityBoost, modelId = "eleven_monolingual_v1") => {
+const textToSpeech = async (apiKey, voiceID, fileName, textInput, stability, similarityBoost, modelId) => {
 	try {
 
 		if (!apiKey || !voiceID || !fileName || !textInput) {
