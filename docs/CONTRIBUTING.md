@@ -6,17 +6,17 @@ First off, thanks for taking the time to contribute! ❤️
 All types of contributions are encouraged and valued. Please make sure to read the relevant section before making your contribution. It will make it a lot easier for us maintainers and smooth out the experience for all involved. The community looks forward to your contributions. 🎉
 
 > And if you like the project, but just don't have time to contribute, that's fine. There are other easy ways to support the project and show your appreciation, which we would also be very happy about:
-> - Star the project
-> - Tweet about it
-> - Refer this project in your project's readme
-> - Mention the project at local meetups and tell your friends/colleagues
+> - ⭐ Star the project
+> - 🐤 Tweet about it
+> - 📜 Refer this project in your project's readme
+> - 🗣 Mention the project at local meetups and tell your friends/colleagues
 
 
 
 ## Code of Conduct
 
 This project and everyone participating in it is governed by the
-[ElevenLabs-node Code of Conduct](https://github.com/FelixWaweru/elevenlabs-nodeblob/main/docs/CODE_OF_CONDUCT.md).
+ElevenLabs-node [Code of Conduct](https://github.com/FelixWaweru/elevenlabs-nodeblob/main/docs/CODE_OF_CONDUCT.md).
 By participating, you are expected to uphold this code.
 
 ## Making A Contribution
