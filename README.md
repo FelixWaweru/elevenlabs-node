@@ -30,7 +30,12 @@
   </p>
 </p>
 
-<p align="center">Love the project? Please consider <a href="https://ko-fi.com/whyweru">donating</a> to help it improve!</p>
+<p align="center">Drop us a ⭐ on GitHub to <a href="https://ko-fi.com/whyweru">help</a> the project improve!</p>
+<p align="center">
+  <a href="https://github.com/Code-Fundi/code-fundi/stargazers">
+    <img alt="Stars" src="https://img.shields.io/github/stars/FelixWaweru/elevenlabs-node.svg" />
+  </a>
+</p>
 
 # About
 
@@ -112,3 +117,4 @@ voice.textToSpeechStream(apiKey, voiceID, textInput).then(res => {
 ## Contributing
 
 Contributions are welcome :)
+Read our [CONTRIBUTING.md](https://github.com/FelixWaweru/elevenlabs-node/blob/main/docs/CONTRIBUTING.md) to learn more.
