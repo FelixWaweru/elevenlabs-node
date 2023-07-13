@@ -32,7 +32,7 @@
 
 <p align="center">Drop us a ⭐ on GitHub to <a href="https://ko-fi.com/whyweru">help</a> the project improve!</p>
 <p align="center">
-  <a href="https://github.com/Code-Fundi/code-fundi/stargazers">
+  <a href="https://github.com/FelixWaweru/elevenlabs-node/stargazers">
     <img alt="Stars" src="https://img.shields.io/github/stars/FelixWaweru/elevenlabs-node.svg" />
   </a>
 </p>
