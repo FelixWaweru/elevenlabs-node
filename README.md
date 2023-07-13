@@ -39,7 +39,7 @@
 
 # About
 
-This is an open source Eleven Labs NodeJS package for converting text to speech using the Eleven Labs API (https://api.elevenlabs.io/docs#/).
+This is an open source Eleven Labs NodeJS package for converting text to speech using the [Eleven Labs API](https://api.elevenlabs.io/docs#/).
 
 ## Features
 
@@ -117,4 +117,5 @@ voice.textToSpeechStream(apiKey, voiceID, textInput).then(res => {
 ## Contributing
 
 Contributions are welcome :)
+
 Read our [CONTRIBUTING.md](https://github.com/FelixWaweru/elevenlabs-node/blob/main/docs/CONTRIBUTING.md) to learn more.
