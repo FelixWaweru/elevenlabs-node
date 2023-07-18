@@ -43,20 +43,20 @@ This is an open source Eleven Labs NodeJS package for converting text to speech 
 
 ## Features
 
-| <div style="width:290px">Function</div> | Parameters                                                            | Endpoint                              |
-| --------------------------------------- | --------------------------------------------------------------------- | ------------------------------------- |
-|  `textToSpeech`                         | (apiKey, voiceID, fileName, textInput, stability, similarityBoost, modelId)    | `/v1/text-to-speech/{voice_id}`       |
-|  `textToSpeechStream`                   | (apiKey, voiceID, textInput, stability, similarityBoost, modelId)              | `/v1/text-to-speech/{voice_id}/stream`|
-|  `getVoices`                            | (apiKey)                                                              | `/v1/voices`                          |
-|  `getDefaultVoiceSettings`              | N/A                                                                   | `/v1/voices/settings/default`         |
-|  `getVoiceSettings`                     | (apiKey, voiceID)                                                     | `/v1/voices/{voice_id}/settings`      |
-|  `getVoice`                             | (apiKey, voiceID)                                                     | `/v1/voices/{voice_id}`               |
-|  `deleteVoice`                          | (apiKey, voiceID)                                                     | `/v1/voices/{voice_id}`               |
-|  `editVoiceSettings`                    | (apiKey, voiceID, stability, similarityBoost)                         | `/v1/voices/{voice_id}/settings/edit` |
+| <div style="width:290px">Function</div> | Parameters                                                                  | Endpoint                               |
+| --------------------------------------- | --------------------------------------------------------------------------- | -------------------------------------- |
+| `textToSpeech`                          | (apiKey, voiceID, fileName, textInput, stability, similarityBoost, modelId) | `/v1/text-to-speech/{voice_id}`        |
+| `textToSpeechStream`                    | (apiKey, voiceID, textInput, stability, similarityBoost, modelId)           | `/v1/text-to-speech/{voice_id}/stream` |
+| `getVoices`                             | (apiKey)                                                                    | `/v1/voices`                           |
+| `getDefaultVoiceSettings`               | N/A                                                                         | `/v1/voices/settings/default`          |
+| `getVoiceSettings`                      | (apiKey, voiceID)                                                           | `/v1/voices/{voice_id}/settings`       |
+| `getVoice`                              | (apiKey, voiceID)                                                           | `/v1/voices/{voice_id}`                |
+| `deleteVoice`                           | (apiKey, voiceID)                                                           | `/v1/voices/{voice_id}`                |
+| `editVoiceSettings`                     | (apiKey, voiceID, stability, similarityBoost)                               | `/v1/voices/{voice_id}/settings/edit`  |
 
 ## Requirements
 
--   [NodeJS](https://nodejs.org/en/download/)
+- [NodeJS](https://nodejs.org/en/download/)
 
 ## Get Started
 
@@ -65,53 +65,52 @@ To install the Elevenlabs package, run the following command:
 ```shell
 npm install elevenlabs-node
 ```
+
 ## Usage
 
 Getting voice details.
 
 ```javascript
-const voice = require('elevenlabs-node');
+const voice = require("elevenlabs-node");
 
-const apiKey = '0e2c037kl8561005671b1de345s8765c'; // Your API key from Elevenlabs
-const voiceID = 'pNInz6obpgDQGcFmaJgB';            // The ID of the voice you want to get
+const apiKey = "0e2c037kl8561005671b1de345s8765c"; // Your API key from Elevenlabs
+const voiceID = "pNInz6obpgDQGcFmaJgB"; // The ID of the voice you want to get
 
-const voiceResponse = voice.getVoice(apiKey, voiceID).then(res => {
-	console.log(res);
+const voiceResponse = voice.getVoice(apiKey, voiceID).then((res) => {
+  console.log(res);
 });
 ```
 
 Generating an audio file from text
 
 ```javascript
-const voice = require('elevenlabs-node');
-const fs = require('fs');
+const voice = require("elevenlabs-node");
+const fs = require("fs-extra");
 
-const apiKey = '0e2c037kl8561005671b1de345s8765c'; // Your API key from Elevenlabs
-const voiceID = 'pNInz6obpgDQGcFmaJgB';            // The ID of the voice you want to get
-const fileName = 'audio.mp3';                      // The name of your audio file
-const textInput = 'mozzy is cool';                 // The text you wish to convert to speech
+const apiKey = "0e2c037kl8561005671b1de345s8765c"; // Your API key from Elevenlabs
+const voiceID = "pNInz6obpgDQGcFmaJgB"; // The ID of the voice you want to get
+const fileName = "audio.mp3"; // The name of your audio file
+const textInput = "mozzy is cool"; // The text you wish to convert to speech
 
-voice.textToSpeech(apiKey, voiceID, fileName, textInput).then(res => {
-    console.log(res);
+voice.textToSpeech(apiKey, voiceID, fileName, textInput).then((res) => {
+  console.log(res);
 });
-
 ```
 
 Generating an audio stream from text
 
 ```javascript
-const voice = require('elevenlabs-node');
-const fs = require('fs');
+const voice = require("elevenlabs-node");
+const fs = require("fs-extra");
 
-const apiKey = '0e2c037kl8561005671b1de345s8765c'; // Your API key from Elevenlabs
-const voiceID = 'pNInz6obpgDQGcFmaJgB';            // The ID of the voice you want to get
-const fileName = 'audio.mp3';                      // The name of your audio file
-const textInput = 'mozzy is cool';                 // The text you wish to convert to speech
+const apiKey = "0e2c037kl8561005671b1de345s8765c"; // Your API key from Elevenlabs
+const voiceID = "pNInz6obpgDQGcFmaJgB"; // The ID of the voice you want to get
+const fileName = "audio.mp3"; // The name of your audio file
+const textInput = "mozzy is cool"; // The text you wish to convert to speech
 
-voice.textToSpeechStream(apiKey, voiceID, textInput).then(res => {
-    res.pipe(fs.createWriteStream(fileName));
+voice.textToSpeechStream(apiKey, voiceID, textInput).then((res) => {
+  res.pipe(fs.createWriteStream(fileName));
 });
-
 ```
 
 ## Contributing
