@@ -7,6 +7,7 @@ const textInput = 'mozzy is cool';
 const stability = '0.5';
 const similarityBoost = '0.5';
 const modelId = 'eleven_multilingual_v1';
+const responseType = 'stream';
 
 describe("Eleven Labs Node Unit Test", () => {
 
@@ -22,7 +23,7 @@ describe("Eleven Labs Node Unit Test", () => {
         // textToSpeechStream test
 	test("Test textToSpeechStream", async () => {
 		// Execute test
-		const response = await script.textToSpeechStream(apiKey, voiceID, textInput, stability, similarityBoost, modelId);
+		const response = await script.textToSpeechStream(apiKey, voiceID, textInput, stability, similarityBoost, modelId, responseType);
 
 		// Response check
 		expect(!response).toBeFalsy();
