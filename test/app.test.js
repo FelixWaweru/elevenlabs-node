@@ -14,6 +14,7 @@ describe("Eleven Labs Node Unit Test", () => {
     // textToSpeech test
 	test("Test textToSpeech", async () => {
 		// Execute test
+		await process.nextTick(() => {});
 		const response = await script.textToSpeech(apiKey, voiceID, fileName, textInput, stability, similarityBoost, modelId);
 
 		// Response check
@@ -23,6 +24,7 @@ describe("Eleven Labs Node Unit Test", () => {
         // textToSpeechStream test
 	test("Test textToSpeechStream", async () => {
 		// Execute test
+		await process.nextTick(() => {});
 		const response = await script.textToSpeechStream(apiKey, voiceID, textInput, stability, similarityBoost, modelId, responseType);
 
 		// Response check
@@ -32,6 +34,7 @@ describe("Eleven Labs Node Unit Test", () => {
         // getVoices test
 	test("Test getVoices", async () => {
 		// Execute test
+		await process.nextTick(() => {});
 		const response = await script.getVoices(apiKey);
 
 		// Response check
@@ -41,6 +44,7 @@ describe("Eleven Labs Node Unit Test", () => {
         // getDefaultVoiceSettings test
 	test("Test getDefaultVoiceSettings", async () => {
 		// Execute test
+		await process.nextTick(() => {});
 		const response = await script.getDefaultVoiceSettings();
 
 		// Response check
@@ -51,6 +55,7 @@ describe("Eleven Labs Node Unit Test", () => {
         // getVoiceSettings test
 	test("Test getVoiceSettings", async () => {
 		// Execute test
+		await process.nextTick(() => {});
 		const response = await script.getVoiceSettings(apiKey, voiceID);
 
 		// Response check
@@ -61,6 +66,7 @@ describe("Eleven Labs Node Unit Test", () => {
         // getVoice test
 	test("Test getVoice", async () => {
 		// Execute test
+		await process.nextTick(() => {});
 		const response = await script.getVoice(apiKey, voiceID);
 
 		// Response check
@@ -70,6 +76,7 @@ describe("Eleven Labs Node Unit Test", () => {
         // editVoiceSettings test
 	test("Test editVoiceSettings", async () => {
 		// Execute test
+		await process.nextTick(() => {});
 		const response = await script.editVoiceSettings(apiKey, voiceID, stability, similarityBoost);
 
 		// Response check
@@ -79,6 +86,7 @@ describe("Eleven Labs Node Unit Test", () => {
         // getModels test
 	test("Test getModels", async () => {
 		// Execute test
+		await process.nextTick(() => {});
 		const response = await script.getModels(apiKey);
 
 		// Response check
