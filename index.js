@@ -61,9 +61,15 @@ const textToSpeech = async (
 
     response.data.pipe(fs.createWriteStream(fileName));
 
-    return {
-      status: "ok",
-    };
+    const writeStream = fs.createWriteStream(fileName);
+    response.data.pipe(writeStream);
+
+    return new Promise((resolve, reject) => {
+      const responseJson = { status: "ok", fileName: fileName };
+      writeStream.on('finish', () => resolve(responseJson));
+    
+      writeStream.on('error', reject);
+    });
   } catch (error) {
     console.log(error);
   }
