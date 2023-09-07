@@ -93,8 +93,28 @@ describe("Eleven Labs Node Unit Test", () => {
 		expect(response).toBeTruthy();
 	});
 
-            // deleteVoice test
-            // TODO: Add create voice test first
+        // getUserInfo test
+	test("Test getUserInfo", async () => {
+		// Execute test
+		await process.nextTick(() => {});
+		const response = await script.getUserInfo(apiKey);
+
+		// Response check
+		expect(response.xi_api_key).toEqual(apiKey);
+	});
+
+        // getUserSubscription test
+	test("Test getUserSubscription", async () => {
+		// Execute test
+		await process.nextTick(() => {});
+		const response = await script.getUserSubscription(apiKey);
+
+		// Response check
+		expect(response.status).toBeTruthy();
+	});
+
+    // deleteVoice test
+    // TODO: Add create voice test first
 	// test("Test deleteVoice", async () => {
 	// 	// Execute test
 	// 	const response = await script.deleteVoice(apiKey, voiceID);
