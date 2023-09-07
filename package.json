@@ -4,7 +4,7 @@
   "description": "This is an open source Eleven Labs NodeJS package for converting text to speech using the Eleven Labs API",
   "main": "index.js",
   "scripts": {
-    "test": "jest --testPathPattern=test"
+    "test": "jest --testPathPattern=test --detectOpenHandles --forceExit"
   },
   "repository": {
     "type": "git",
