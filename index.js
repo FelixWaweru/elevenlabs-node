@@ -362,6 +362,66 @@ const getModels = async (apiKey) => {
   }
 };
 
+/**
+
+Function that returns the user details.
+
+@param {string} apiKey - The API key to authenticate the request.
+
+@returns {Object} - An object containing the user details.
+*/
+const getUserInfo = async (apiKey) => {
+  try {
+    if (!apiKey) {
+      console.log("ERR: Missing parameter");
+    }
+
+    const voiceURL = `${elevenLabsAPI}/user`;
+
+    const response = await axios({
+      method: "GET",
+      url: voiceURL,
+      headers: {
+        "xi-api-key": apiKey,
+      },
+    });
+
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+/**
+
+Function that returns the user subscription details.
+
+@param {string} apiKey - The API key to authenticate the request.
+
+@returns {Object} - An object containing the user subscription details.
+*/
+const getUserSubscription = async (apiKey) => {
+  try {
+    if (!apiKey) {
+      console.log("ERR: Missing parameter");
+    }
+
+    const voiceURL = `${elevenLabsAPI}/user/subscription`;
+
+    const response = await axios({
+      method: "GET",
+      url: voiceURL,
+      headers: {
+        "xi-api-key": apiKey,
+      },
+    });
+
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 module.exports = {
   textToSpeech: textToSpeech,
   textToSpeechStream: textToSpeechStream,
@@ -372,4 +432,6 @@ module.exports = {
   deleteVoice: deleteVoice,
   editVoiceSettings: editVoiceSettings,
   getModels: getModels,
+  getUserInfo: getUserInfo,
+  getUserSubscription: getUserSubscription,
 };
