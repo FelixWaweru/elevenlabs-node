@@ -61,9 +61,15 @@ const textToSpeech = async (
 
     response.data.pipe(fs.createWriteStream(fileName));
 
-    return {
-      status: "ok",
-    };
+    const writeStream = fs.createWriteStream(fileName);
+    response.data.pipe(writeStream);
+
+    return new Promise((resolve, reject) => {
+      const responseJson = { status: "ok", fileName: fileName };
+      writeStream.on('finish', () => resolve(responseJson));
+    
+      writeStream.on('error', reject);
+    });
   } catch (error) {
     console.log(error);
   }
@@ -85,6 +91,8 @@ Function that converts text to speech and returns a readable stream of the audio
 
 @param {string} modelId - The model to use for the text-to-speech conversion. If null, it will use elevenlab's default model.
 
+@param {string} responseType - The response type for the text-to-speech function (arrayBuffer, stream, etc). If null, it will use 'stream' by default.
+
 @returns {Object} - A readable stream of the audio data.
 */
 const textToSpeechStream = async (
@@ -93,7 +101,8 @@ const textToSpeechStream = async (
   textInput,
   stability,
   similarityBoost,
-  modelId
+  modelId,
+  responseType
 ) => {
   try {
     if (!apiKey || !voiceID || !textInput) {
@@ -120,7 +129,7 @@ const textToSpeechStream = async (
         "xi-api-key": apiKey,
         "Content-Type": "application/json",
       },
-      responseType: "stream",
+      responseType: responseType ? responseType : "stream"
     });
 
     return response.data;
@@ -323,6 +332,96 @@ const editVoiceSettings = async (
   }
 };
 
+/**
+
+Function that returns an object containing the list of voice models.
+
+@param {string} apiKey - The API key to authenticate the request.
+
+@returns {Object} - An object containing the list of voice models and their details.
+*/
+const getModels = async (apiKey) => {
+  try {
+    if (!apiKey) {
+      console.log("ERR: Missing parameter");
+    }
+
+    const voiceURL = `${elevenLabsAPI}/models`;
+
+    const response = await axios({
+      method: "GET",
+      url: voiceURL,
+      headers: {
+        "xi-api-key": apiKey,
+      },
+    });
+
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+/**
+
+Function that returns the user details.
+
+@param {string} apiKey - The API key to authenticate the request.
+
+@returns {Object} - An object containing the user details.
+*/
+const getUserInfo = async (apiKey) => {
+  try {
+    if (!apiKey) {
+      console.log("ERR: Missing parameter");
+    }
+
+    const voiceURL = `${elevenLabsAPI}/user`;
+
+    const response = await axios({
+      method: "GET",
+      url: voiceURL,
+      headers: {
+        "xi-api-key": apiKey,
+      },
+    });
+
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+/**
+
+Function that returns the user subscription details.
+
+@param {string} apiKey - The API key to authenticate the request.
+
+@returns {Object} - An object containing the user subscription details.
+*/
+const getUserSubscription = async (apiKey) => {
+  try {
+    if (!apiKey) {
+      console.log("ERR: Missing parameter");
+    }
+
+    const voiceURL = `${elevenLabsAPI}/user/subscription`;
+
+    const response = await axios({
+      method: "GET",
+      url: voiceURL,
+      headers: {
+        "xi-api-key": apiKey,
+      },
+    });
+
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 module.exports = {
   textToSpeech: textToSpeech,
   textToSpeechStream: textToSpeechStream,
@@ -332,4 +431,7 @@ module.exports = {
   getVoice: getVoice,
   deleteVoice: deleteVoice,
   editVoiceSettings: editVoiceSettings,
+  getModels: getModels,
+  getUserInfo: getUserInfo,
+  getUserSubscription: getUserSubscription,
 };
