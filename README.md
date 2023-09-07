@@ -53,6 +53,9 @@ This is an open source Eleven Labs NodeJS package for converting text to speech 
 | `getVoice`                              | (apiKey, voiceID)                                                           | `/v1/voices/{voice_id}`                |
 | `deleteVoice`                           | (apiKey, voiceID)                                                           | `/v1/voices/{voice_id}`                |
 | `editVoiceSettings`                     | (apiKey, voiceID, stability, similarityBoost)                               | `/v1/voices/{voice_id}/settings/edit`  |
+| `getModels`                             | (apiKey)                                                                    | `/v1/models`                           |
+| `getUserInfo`                             | (apiKey)                                                                    | `/v1/user`                           |
+| `getUserSubscription`                             | (apiKey)                                                                    | `/v1/user/subscription`                           |
 
 ## Requirements
 
