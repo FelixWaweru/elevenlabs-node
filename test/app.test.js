@@ -75,6 +75,15 @@ describe("Eleven Labs Node Unit Test", () => {
 		expect(response.status).toEqual('ok');
 	});
 
+        // getModels test
+	test("Test getModels", async () => {
+		// Execute test
+		const response = await script.getModels(apiKey);
+
+		// Response check
+		expect(response).toBeTruthy();
+	});
+
             // deleteVoice test
             // TODO: Add create voice test first
 	// test("Test deleteVoice", async () => {
