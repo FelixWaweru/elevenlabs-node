@@ -1,6 +1,7 @@
 const axios = require("axios");
 const fs = require("fs-extra");
 const elevenLabsAPI = "https://api.elevenlabs.io/v1";
+const elevenLabsAPIV2 = "https://api.elevenlabs.io/v2";
 
 /**
 
