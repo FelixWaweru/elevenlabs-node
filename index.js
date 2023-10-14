@@ -13,7 +13,7 @@ function ElevenLabs(options = {
 }) {
 
     this.apiKey = options.apiKey ? options.apiKey : "";
-    this.voiceId = options.voiceId ? options.voiceId : "ErXwobaYiN019PkySvjV";
+    this.voiceId = options.voiceId ? options.voiceId : "pNInz6obpgDQGcFmaJgB";
 }
 
 
