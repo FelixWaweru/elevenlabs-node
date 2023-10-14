@@ -65,14 +65,14 @@ This is an open source Eleven Labs NodeJS package for converting text to speech 
 ## Parameters
 | <div style="width:290px">Variable</div> | Description                                                                 | Type                                   |
 | --------------------------------------- | --------------------------------------------------------------------------- | -------------------------------------- |
-| `fileName`                              | Name and file path for your audio file e.g (`./audio`)                                        | Text                                   |
-| `textInput`                             | Text to be converted into audio e.g (`Hello`)                                      | Text                                   |
-| `stability`                             | Stability for Text to Speech e.g (`0.5`)                                            | Float                                  |
-| `similarityBoost`                       | Similarity Boost for Text to Speech e.g (`0.5`)                                            | Float                                  |
-| `voiceId`                               | ElevenLabs Voice ID e.g (`pNInz6obpgDQGcFmaJgB`)                       | Text                                   |
-| `modelId`                               | ElevenLabs Model ID e.g (`elevenlabs_multilingual_v2`)                 | Text                                   |
-| `responseType`                          | Streaming response type e.g (`stream`)                                 | Text                                   |
-| `similarityBoost`                       | Speaker Boost for Text to Speech e.g (`true`)                          | Boolean                                |
+| `fileName`                              | Name and file path for your audio file e.g (`./audio`)                                        | `Text`                                   |
+| `textInput`                             | Text to be converted into audio e.g (`Hello`)                                      | `Text`                                   |
+| `stability`                             | Stability for Text to Speech e.g (`0.5`)                                            | `Float`                                  |
+| `similarityBoost`                       | Similarity Boost for Text to Speech e.g (`0.5`)                                            | `Float`                                  |
+| `voiceId`                               | ElevenLabs Voice ID e.g (`pNInz6obpgDQGcFmaJgB`)                       | `Text`                                   |
+| `modelId`                               | ElevenLabs Model ID e.g (`elevenlabs_multilingual_v2`)                 | `Text`                                   |
+| `responseType`                          | Streaming response type e.g (`stream`)                                 | `Text`                                   |
+| `similarityBoost`                       | Speaker Boost for Text to Speech e.g (`true`)                          | `Boolean`                                |
 
 
 ## Requirements
