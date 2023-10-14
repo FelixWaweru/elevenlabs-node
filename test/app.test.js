@@ -1,4 +1,4 @@
-const script = require('../index.js');
+const ElevenLabs = require('../index.js');
 
 const apiKey = process.env.ELEVENLABS_API_KEY;
 const voiceID = process.env.ELEVENLABS_VOICE_ID;
@@ -9,13 +9,20 @@ const similarityBoost = '0.5';
 const modelId = 'eleven_multilingual_v1';
 const responseType = 'stream';
 
+const script = new ElevenLabs(
+    {
+        apiKey: apiKey,
+        apiVersion: "V1"
+    }
+);
+
 describe("Eleven Labs Node Unit Test", () => {
 
     // textToSpeech test
 	test("Test textToSpeech", async () => {
 		// Execute test
 		await process.nextTick(() => {});
-		const response = await script.textToSpeech(apiKey, voiceID, fileName, textInput, stability, similarityBoost, modelId);
+		const response = await script.textToSpeech(voiceID, fileName, textInput, stability, similarityBoost, modelId);
 
 		// Response check
 		expect(response.status).toEqual('ok');
@@ -25,7 +32,7 @@ describe("Eleven Labs Node Unit Test", () => {
 	test("Test textToSpeechStream", async () => {
 		// Execute test
 		await process.nextTick(() => {});
-		const response = await script.textToSpeechStream(apiKey, voiceID, textInput, stability, similarityBoost, modelId, responseType);
+		const response = await script.textToSpeechStream(voiceID, textInput, stability, similarityBoost, modelId, responseType);
 
 		// Response check
 		expect(!response).toBeFalsy();
@@ -35,7 +42,7 @@ describe("Eleven Labs Node Unit Test", () => {
 	test("Test getVoices", async () => {
 		// Execute test
 		await process.nextTick(() => {});
-		const response = await script.getVoices(apiKey);
+		const response = await script.getVoices();
 
 		// Response check
 		expect(response.voices).toBeTruthy();
@@ -56,7 +63,7 @@ describe("Eleven Labs Node Unit Test", () => {
 	test("Test getVoiceSettings", async () => {
 		// Execute test
 		await process.nextTick(() => {});
-		const response = await script.getVoiceSettings(apiKey, voiceID);
+		const response = await script.getVoiceSettings(voiceID);
 
 		// Response check
 		expect(response.stability).toBeTruthy();
@@ -67,7 +74,7 @@ describe("Eleven Labs Node Unit Test", () => {
 	test("Test getVoice", async () => {
 		// Execute test
 		await process.nextTick(() => {});
-		const response = await script.getVoice(apiKey, voiceID);
+		const response = await script.getVoice(voiceID);
 
 		// Response check
 		expect(response.voice_id).toBeTruthy();
@@ -77,7 +84,7 @@ describe("Eleven Labs Node Unit Test", () => {
 	test("Test editVoiceSettings", async () => {
 		// Execute test
 		await process.nextTick(() => {});
-		const response = await script.editVoiceSettings(apiKey, voiceID, stability, similarityBoost);
+		const response = await script.editVoiceSettings(voiceID, stability, similarityBoost);
 
 		// Response check
 		expect(response.status).toEqual('ok');
@@ -87,7 +94,7 @@ describe("Eleven Labs Node Unit Test", () => {
 	test("Test getModels", async () => {
 		// Execute test
 		await process.nextTick(() => {});
-		const response = await script.getModels(apiKey);
+		const response = await script.getModels();
 
 		// Response check
 		expect(response).toBeTruthy();
@@ -97,7 +104,7 @@ describe("Eleven Labs Node Unit Test", () => {
 	test("Test getUserInfo", async () => {
 		// Execute test
 		await process.nextTick(() => {});
-		const response = await script.getUserInfo(apiKey);
+		const response = await script.getUserInfo();
 
 		// Response check
 		expect(response.xi_api_key).toEqual(apiKey);
@@ -107,19 +114,9 @@ describe("Eleven Labs Node Unit Test", () => {
 	test("Test getUserSubscription", async () => {
 		// Execute test
 		await process.nextTick(() => {});
-		const response = await script.getUserSubscription(apiKey);
+		const response = await script.getUserSubscription();
 
 		// Response check
 		expect(response.status).toBeTruthy();
 	});
-
-    // deleteVoice test
-    // TODO: Add create voice test first
-	// test("Test deleteVoice", async () => {
-	// 	// Execute test
-	// 	const response = await script.deleteVoice(apiKey, voiceID);
-
-	// 	// Response check
-	// 	expect(response.status).toEqual('ok');
-	// });
 });
