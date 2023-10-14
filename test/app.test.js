@@ -13,7 +13,7 @@ const speakerBoost = true;
 const script = new ElevenLabs(
     {
         apiKey: apiKey,
-		voiceId: voiceID
+		voiceId: voiceId
     }
 );
 
