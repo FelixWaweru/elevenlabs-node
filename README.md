@@ -75,8 +75,8 @@ Setup the ElevenLabs configurations for your project.
 
 | <div style="width:290px">Variable</div> | Description                                                                 | Default                                |
 | --------------------------------------- | --------------------------------------------------------------------------- | -------------------------------------- |
-| `apiKey`                                | Your API key from Elevenlabs (Required)                                     | N/A                                 |
-| `voiceId`                               | A Voice ID from Elevenlabs (Optional)                                       | Adam (`pNInz6obpgDQGcFmaJgB`)          |
+| `apiKey`                                | (`Required`) Your API key from Elevenlabs                                     | N/A                                    |
+| `voiceId`                               | (`Optional`) A Voice ID from Elevenlabs                                     | Adam (`pNInz6obpgDQGcFmaJgB`)          |
 
 ```javascript
 const ElevenLabs = require("elevenlabs-node");
