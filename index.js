@@ -1,13 +1,40 @@
 const axios = require("axios");
 const fs = require("fs-extra");
-const elevenLabsAPI = "https://api.elevenlabs.io/v1";
+const elevenLabsAPIV1 = "https://api.elevenlabs.io/v1";
 const elevenLabsAPIV2 = "https://api.elevenlabs.io/v2";
+
+
+/**
+Creates an instance of ElevenLabs.
+@param {Object} - An object containing the API Key and API Version [default: ElevenLabs V1].
+*/
+function ElevenLabs(options = {
+        apiKey: "",
+        apiVersion: ""
+    }) {
+
+    this.apiKey = options.apiKey ? options.apiKey : "";
+
+    switch(options.apiVersion) {
+      case "V1":
+        this.apiVersion = elevenLabsAPIV1;
+        break;
+      case "V2":
+        this.apiVersion = elevenLabsAPIV2;
+        break;
+      case "":
+        this.apiVersion = elevenLabsAPIV1;
+        break;
+      default:
+        console.log("Invalid Version");
+        break;
+    }
+  }
+
 
 /**
 
 Function that converts text to speech and saves the audio file to the specified file name.
-
-@param {string} apiKey - The API key to authenticate the request.
 
 @param {string} voiceID - The ID of the voice to use for the text-to-speech conversion.
 
@@ -23,21 +50,20 @@ Function that converts text to speech and saves the audio file to the specified 
 
 @returns {Object} - An object containing the status of the operation.
 */
-const textToSpeech = async (
-  apiKey,
+ElevenLabs.prototype.textToSpeech = async function (
   voiceID,
   fileName,
   textInput,
   stability,
   similarityBoost,
   modelId
-) => {
+) {
   try {
-    if (!apiKey || !voiceID || !fileName || !textInput) {
+    if (!voiceID || !fileName || !textInput) {
       console.log("ERR: Missing parameter");
     }
 
-    const voiceURL = `${elevenLabsAPI}/text-to-speech/${voiceID}`;
+    const voiceURL = `${this.apiVersion}/text-to-speech/${voiceID}`;
     const stabilityValue = stability ? stability : 0;
     const similarityBoostValue = similarityBoost ? similarityBoost : 0;
 
@@ -54,7 +80,7 @@ const textToSpeech = async (
       },
       headers: {
         Accept: "audio/mpeg",
-        "xi-api-key": apiKey,
+        "xi-api-key": this.apiKey,
         "Content-Type": "application/json",
       },
       responseType: "stream",
@@ -80,8 +106,6 @@ const textToSpeech = async (
 
 Function that converts text to speech and returns a readable stream of the audio data.
 
-@param {string} apiKey - The API key to authenticate the request.
-
 @param {string} voiceID - The ID of the voice to use for the text-to-speech conversion.
 
 @param {string} textInput - The text to convert to speech.
@@ -96,21 +120,20 @@ Function that converts text to speech and returns a readable stream of the audio
 
 @returns {Object} - A readable stream of the audio data.
 */
-const textToSpeechStream = async (
-  apiKey,
+ElevenLabs.prototype.textToSpeechStream = async function (
   voiceID,
   textInput,
   stability,
   similarityBoost,
   modelId,
   responseType
-) => {
+) {
   try {
-    if (!apiKey || !voiceID || !textInput) {
+    if (!voiceID || !textInput) {
       console.log("ERR: Missing parameter");
     }
 
-    const voiceURL = `${elevenLabsAPI}/text-to-speech/${voiceID}/stream`;
+    const voiceURL = `${this.apiVersion}/text-to-speech/${voiceID}/stream`;
     const stabilityValue = stability ? stability : 0;
     const similarityBoostValue = similarityBoost ? similarityBoost : 0;
 
@@ -127,7 +150,7 @@ const textToSpeechStream = async (
       },
       headers: {
         Accept: "audio/mpeg",
-        "xi-api-key": apiKey,
+        "xi-api-key": this.apiKey,
         "Content-Type": "application/json",
       },
       responseType: responseType ? responseType : "stream"
@@ -143,23 +166,17 @@ const textToSpeechStream = async (
 
 Function that returns an object containing the details for all the voices.
 
-@param {string} apiKey - The API key to authenticate the request.
-
 @returns {Object} - An object containing the list of voices and their details.
 */
-const getVoices = async (apiKey) => {
+ElevenLabs.prototype.getVoices = async function () {
   try {
-    if (!apiKey) {
-      console.log("ERR: Missing parameter");
-    }
-
-    const voiceURL = `${elevenLabsAPI}/voices`;
+    const voiceURL = `${this.apiVersion}/voices`;
 
     const response = await axios({
       method: "GET",
       url: voiceURL,
       headers: {
-        "xi-api-key": apiKey,
+        "xi-api-key": this.apiKey,
       },
     });
 
@@ -175,9 +192,9 @@ Function that returns an object containing the default settings for the voices.
 
 @returns {Object} - An object containing the default settings for the voices.
 */
-const getDefaultVoiceSettings = async () => {
+ElevenLabs.prototype.getDefaultVoiceSettings = async function () {
   try {
-    const voiceURL = `${elevenLabsAPI}/voices/settings/default`;
+    const voiceURL = `${this.apiVersion}/voices/settings/default`;
 
     const response = await axios({
       method: "GET",
@@ -194,25 +211,23 @@ const getDefaultVoiceSettings = async () => {
 
 Function that returns an object containing the settings of the specified voice.
 
-@param {string} apiKey - The API key to authenticate the request.
-
 @param {string} voiceID - The ID of the voice to use for the text-to-speech conversion.
 
 @returns {Object} - An object containing the settings of the specified voice.
 */
-const getVoiceSettings = async (apiKey, voiceID) => {
+ElevenLabs.prototype.getVoiceSettings = async function (voiceID) {
   try {
-    if (!apiKey || !voiceID) {
+    if (!voiceID) {
       console.log("ERR: Missing parameter");
     }
 
-    const voiceURL = `${elevenLabsAPI}/voices/${voiceID}/settings`;
+    const voiceURL = `${this.apiVersion}/voices/${voiceID}/settings`;
 
     const response = await axios({
       method: "GET",
       url: voiceURL,
       headers: {
-        "xi-api-key": apiKey,
+        "xi-api-key": this.apiKey,
       },
     });
 
@@ -226,25 +241,23 @@ const getVoiceSettings = async (apiKey, voiceID) => {
 
 Function that returns an object containing the details of the specified voice.
 
-@param {string} apiKey - The API key to authenticate the request.
-
 @param {string} voiceID - The ID of the voice to use for the text-to-speech conversion.
 
 @returns {Object} - An object containing the details of the specified voice.
 */
-const getVoice = async (apiKey, voiceID) => {
+ElevenLabs.prototype.getVoice = async function (voiceID) {
   try {
-    if (!apiKey || !voiceID) {
+    if (!voiceID) {
       console.log("ERR: Missing parameter");
     }
 
-    const voiceURL = `${elevenLabsAPI}/voices/${voiceID}`;
+    const voiceURL = `${this.apiVersion}/voices/${voiceID}`;
 
     const response = await axios({
       method: "GET",
       url: voiceURL,
       headers: {
-        "xi-api-key": apiKey,
+        "xi-api-key": this.apiKey,
       },
     });
 
@@ -258,25 +271,23 @@ const getVoice = async (apiKey, voiceID) => {
 
 Function that returns an object containing the status of the delete operation.
 
-@param {string} apiKey - The API key to authenticate the request.
-
 @param {string} voiceID - The ID of the voice to use for the text-to-speech conversion.
 
 @returns {Object} - An object containing the status of the delete operation.
 */
-const deleteVoice = async (apiKey, voiceID) => {
+ElevenLabs.prototype.deleteVoice = async function (voiceID) {
   try {
-    if (!apiKey || !voiceID) {
+    if (!voiceID) {
       console.log("ERR: Missing parameter");
     }
 
-    const voiceURL = `${elevenLabsAPI}/voices/${voiceID}`;
+    const voiceURL = `${this.apiVersion}/voices/${voiceID}`;
 
     const response = await axios({
       method: "DELETE",
       url: voiceURL,
       headers: {
-        "xi-api-key": apiKey,
+        "xi-api-key": this.apiKey,
       },
     });
 
@@ -290,8 +301,6 @@ const deleteVoice = async (apiKey, voiceID) => {
 
 Function that returns an object containing the status of the edit operation.
 
-@param {string} apiKey - The API key to authenticate the request.
-
 @param {string} voiceID - The ID of the voice to use for the text-to-speech conversion.
 
 @param {number} stability - The stability setting for the voice.
@@ -300,18 +309,17 @@ Function that returns an object containing the status of the edit operation.
 
 @returns {Object} - An object containing the status of the edit operation.
 */
-const editVoiceSettings = async (
-  apiKey,
+ElevenLabs.prototype.editVoiceSettings = async function (
   voiceID,
   stability,
   similarityBoost
-) => {
+) {
   try {
-    if (!apiKey || !voiceID) {
+    if (!voiceID) {
       console.log("ERR: Missing parameter");
     }
 
-    const voiceURL = `${elevenLabsAPI}/voices/${voiceID}/settings/edit`;
+    const voiceURL = `${this.apiVersion}/voices/${voiceID}/settings/edit`;
     const stabilityValue = stability ? stability : 0;
     const similarityBoostValue = similarityBoost ? similarityBoost : 0;
 
@@ -323,7 +331,7 @@ const editVoiceSettings = async (
         similarity_boost: similarityBoostValue,
       },
       headers: {
-        "xi-api-key": apiKey,
+        "xi-api-key": this.apiKey,
       },
     });
 
@@ -337,23 +345,17 @@ const editVoiceSettings = async (
 
 Function that returns an object containing the list of voice models.
 
-@param {string} apiKey - The API key to authenticate the request.
-
 @returns {Object} - An object containing the list of voice models and their details.
 */
-const getModels = async (apiKey) => {
+ElevenLabs.prototype.getModels = async function () {
   try {
-    if (!apiKey) {
-      console.log("ERR: Missing parameter");
-    }
-
-    const voiceURL = `${elevenLabsAPI}/models`;
+    const voiceURL = `${this.apiVersion}/models`;
 
     const response = await axios({
       method: "GET",
       url: voiceURL,
       headers: {
-        "xi-api-key": apiKey,
+        "xi-api-key": this.apiKey,
       },
     });
 
@@ -367,23 +369,17 @@ const getModels = async (apiKey) => {
 
 Function that returns the user details.
 
-@param {string} apiKey - The API key to authenticate the request.
-
 @returns {Object} - An object containing the user details.
 */
-const getUserInfo = async (apiKey) => {
+ElevenLabs.prototype.getUserInfo = async function () {
   try {
-    if (!apiKey) {
-      console.log("ERR: Missing parameter");
-    }
-
-    const voiceURL = `${elevenLabsAPI}/user`;
+    const voiceURL = `${this.apiVersion}/user`;
 
     const response = await axios({
       method: "GET",
       url: voiceURL,
       headers: {
-        "xi-api-key": apiKey,
+        "xi-api-key": this.apiKey,
       },
     });
 
@@ -397,23 +393,17 @@ const getUserInfo = async (apiKey) => {
 
 Function that returns the user subscription details.
 
-@param {string} apiKey - The API key to authenticate the request.
-
 @returns {Object} - An object containing the user subscription details.
 */
-const getUserSubscription = async (apiKey) => {
+ElevenLabs.prototype.getUserSubscription = async function () {
   try {
-    if (!apiKey) {
-      console.log("ERR: Missing parameter");
-    }
-
-    const voiceURL = `${elevenLabsAPI}/user/subscription`;
+    const voiceURL = `${this.apiVersion}/user/subscription`;
 
     const response = await axios({
       method: "GET",
       url: voiceURL,
       headers: {
-        "xi-api-key": apiKey,
+        "xi-api-key": this.apiKey,
       },
     });
 
@@ -423,16 +413,4 @@ const getUserSubscription = async (apiKey) => {
   }
 };
 
-module.exports = {
-  textToSpeech: textToSpeech,
-  textToSpeechStream: textToSpeechStream,
-  getVoices: getVoices,
-  getDefaultVoiceSettings: getDefaultVoiceSettings,
-  getVoiceSettings: getVoiceSettings,
-  getVoice: getVoice,
-  deleteVoice: deleteVoice,
-  editVoiceSettings: editVoiceSettings,
-  getModels: getModels,
-  getUserInfo: getUserInfo,
-  getUserSubscription: getUserSubscription,
-};
+module.exports = ElevenLabs;
