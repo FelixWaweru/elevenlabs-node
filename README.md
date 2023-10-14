@@ -45,17 +45,30 @@ This is an open source Eleven Labs NodeJS package for converting text to speech 
 
 | <div style="width:290px">Function</div> | Parameters                                                                  | Endpoint                               |
 | --------------------------------------- | --------------------------------------------------------------------------- | -------------------------------------- |
-| `textToSpeech`                          | (fileName, textInput, stability, similarityBoost, modelId)                  | `/v1/text-to-speech/{voice_id}`        |
-| `textToSpeechStream`                    | (textInput, stability, similarityBoost, modelId)                            | `/v1/text-to-speech/{voice_id}/stream` |
-| `editVoiceSettings`                     | (voiceID, stability, similarityBoost)                                       | `/v1/voices/{voice_id}/settings/edit`  |
-| `getVoiceSettings`                      | (voiceID)                                                                   | `/v1/voices/{voice_id}/settings`       |
-| `deleteVoice`                           | (voiceID)                                                                   | `/v1/voices/{voice_id}`                |
-| `getVoice`                              | (voiceID)                                                                   | `/v1/voices/{voice_id}`                |
+| `textToSpeech`                          | (fileName, textInput, stability, similarityBoost, modelId, speakerBoost)    | `/v1/text-to-speech/{voice_id}`        |
+| `textToSpeechStream`                    | (textInput, stability, similarityBoost, modelId, responseType, speakerBoost)                            | `/v1/text-to-speech/{voice_id}/stream` |
+| `editVoiceSettings`                     | (voiceId, stability, similarityBoost)                                       | `/v1/voices/{voice_id}/settings/edit`  |
+| `getVoiceSettings`                      | (voiceId)                                                                   | `/v1/voices/{voice_id}/settings`       |
+| `deleteVoice`                           | (voiceId)                                                                   | `/v1/voices/{voice_id}`                |
+| `getVoice`                              | (voiceId)                                                                   | `/v1/voices/{voice_id}`                |
 | `getVoices`                             | N/A                                                                         | `/v1/voices`                           |
 | `getModels`                             | N/A                                                                         | `/v1/models`                           |
 | `getUserInfo`                             | N/A                                                                       | `/v1/user`                           |
 | `getUserSubscription`                             | N/A                                                               | `/v1/user/subscription`                           |
 | `getDefaultVoiceSettings`               | N/A                                                                         | `/v1/voices/settings/default`          |
+
+## Parameters
+| <div style="width:290px">Variable</div> | Description                                                                 | Type                                   |
+| --------------------------------------- | --------------------------------------------------------------------------- | -------------------------------------- |
+| `fileName`                              | Name and file path for your audio file e.g (`./audio`)                                        | Text                                   |
+| `textInput`                             | Text to be converted into audio e.g (`Hello`)                                      | Text                                   |
+| `stability`                             | Stability for Text to Speech e.g (`0.5`)                                            | Float                                  |
+| `similarityBoost`                       | Similarity Boost for Text to Speech e.g (`0.5`)                                            | Float                                  |
+| `voiceId`                               | ElevenLabs Voice ID e.g (`pNInz6obpgDQGcFmaJgB`)                       | Text                                   |
+| `modelId`                               | ElevenLabs Model ID e.g (`elevenlabs_multilingual_v2`)                 | Text                                   |
+| `responseType`                          | Streaming response type e.g (`stream`)                                 | Text                                   |
+| `similarityBoost`                       | Speaker Boost for Text to Speech e.g (`true`)                          | Boolean                                |
+
 
 ## Requirements
 
@@ -97,7 +110,6 @@ Generating an audio file from text.
 
 ```javascript
 const ElevenLabs = require("elevenlabs-node");
-const fs = require("fs-extra");
 
 const fileName = "audio.mp3";                       // The name of your audio file
 const textInput = "mozzy is cool";                  // The text you wish to convert to speech
