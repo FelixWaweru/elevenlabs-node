@@ -15,6 +15,11 @@
     </a>
     <br />
     <br />
+    <a href="https://github.com/FelixWaweru/elevenlabs-node/actions/workflows/npm-publish.yml">
+      <img alt="NPM Package Build" src="https://github.com/FelixWaweru/elevenlabs-node/actions/workflows/npm-publish.yml/badge.svg" />
+    </a>
+    <br />
+    <br />
     <a>
       <img src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white"/>
     </a>
@@ -111,8 +116,15 @@ Generating an audio file from text.
 ```javascript
 const ElevenLabs = require("elevenlabs-node");
 
+// Required Parameters
 const fileName = "audio.mp3";                       // The name of your audio file
 const textInput = "mozzy is cool";                  // The text you wish to convert to speech
+
+// Optional Parameters
+const stability = 0.5;                              // The stability for the converted speech
+const similarityBoost = 0.5;                        // The similarity boost for the converted speech
+const modelId = "elevenlabs_multilingual_v2";       // The ElevenLabs Model ID
+const speakerBoost = true;                          // The speaker boost for the converted speech
 
 const voice = new ElevenLabs(
     {
@@ -121,7 +133,7 @@ const voice = new ElevenLabs(
     }
 );
 
-voice.textToSpeech(fileName, textInput).then((res) => {
+voice.textToSpeech(fileName, textInput, stability, similarityBoost, modelId, speakerBoost).then((res) => {
   console.log(res);
 });
 ```
@@ -134,8 +146,15 @@ Generating an audio stream from text.
 const ElevenLabs = require("elevenlabs-node");
 const fs = require("fs-extra");
 
-const fileName = "audio.mp3";                       // The name of your audio file
+// Required Parameters
 const textInput = "mozzy is cool";                  // The text you wish to convert to speech
+
+// Optional Parameters
+const stability = 0.5;                              // The stability for the converted speech
+const similarityBoost = 0.5;                        // The similarity boost for the converted speech
+const modelId = "elevenlabs_multilingual_v2";       // The ElevenLabs Model ID
+const responseType = 'stream';                      // The streaming response type for the converted speech
+const speakerBoost = true;                          // The speaker boost for the converted speech
 
 const voice = new ElevenLabs(
     {
@@ -144,7 +163,7 @@ const voice = new ElevenLabs(
     }
 );
 
-voice.textToSpeechStream(textInput).then((res) => {
+voice.textToSpeechStream(textInput, stability, similarityBoost, modelId, responseType, speakerBoost).then((res) => {
   res.pipe(fs.createWriteStream(fileName));
 });
 ```
@@ -156,6 +175,7 @@ Editing voice settings.
 ```javascript
 const ElevenLabs = require("elevenlabs-node");
 
+// Required Parameters
 const voiceID = "pNInz6obpgDQGcFmaJgB";             // The ID of the voice you want to get
 const stabilityBoost = 0.1;                         // The Stability Boost for the voice you want to edit
 const similarityBoost = 0.1;                        // The Similarity Boost for the voice you want to edit
@@ -178,6 +198,7 @@ Getting voice settings.
 ```javascript
 const ElevenLabs = require("elevenlabs-node");
 
+// Required Parameters
 const voiceID = "pNInz6obpgDQGcFmaJgB";             // The ID of the voice you want to get
 
 const voice = new ElevenLabs(
@@ -198,6 +219,7 @@ Delete voice.
 ```javascript
 const ElevenLabs = require("elevenlabs-node");
 
+// Required Parameters
 const voiceID = "pNInz6obpgDQGcFmaJgB";             // The ID of the voice you want to get
 
 const voice = new ElevenLabs(
@@ -218,6 +240,7 @@ Getting voice details.
 ```javascript
 const ElevenLabs = require("elevenlabs-node");
 
+// Required Parameters
 const voiceID = "pNInz6obpgDQGcFmaJgB";             // The ID of the voice you want to get
 
 const voice = new ElevenLabs(
@@ -310,6 +333,7 @@ Getting default voice settings.
 ```javascript
 const ElevenLabs = require("elevenlabs-node");
 
+// Required Parameters
 const voiceID = "pNInz6obpgDQGcFmaJgB";             // The ID of the voice you want to get
 
 const voice = new ElevenLabs(
