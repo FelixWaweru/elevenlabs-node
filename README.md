@@ -91,25 +91,9 @@ const voice = new ElevenLabs(
 
 ## Usage
 
-Getting voice details.
+### Text To Speech
 
-```javascript
-const ElevenLabs = require("elevenlabs-node");
-
-const voiceID = "pNInz6obpgDQGcFmaJgB";             // The ID of the voice you want to get
-
-const voice = new ElevenLabs(
-    {
-        apiKey: "0e2c037kl8561005671b1de345s8765c", // Your API key from Elevenlabs
-    }
-);
-
-const voiceResponse = voice.getVoice(voiceID).then((res) => {
-  console.log(res);
-});
-```
-
-Generating an audio file from text
+Generating an audio file from text.
 
 ```javascript
 const ElevenLabs = require("elevenlabs-node");
@@ -130,7 +114,9 @@ voice.textToSpeech(fileName, textInput).then((res) => {
 });
 ```
 
-Generating an audio stream from text
+### Text To Speech Stream
+
+Generating an audio stream from text.
 
 ```javascript
 const ElevenLabs = require("elevenlabs-node");
@@ -148,6 +134,180 @@ const voice = new ElevenLabs(
 
 voice.textToSpeechStream(textInput).then((res) => {
   res.pipe(fs.createWriteStream(fileName));
+});
+```
+
+### Edit Voice Settings
+
+Editing voice settings.
+
+```javascript
+const ElevenLabs = require("elevenlabs-node");
+
+const voiceID = "pNInz6obpgDQGcFmaJgB";             // The ID of the voice you want to get
+const stabilityBoost = 0.1;                         // The Stability Boost for the voice you want to edit
+const similarityBoost = 0.1;                        // The Similarity Boost for the voice you want to edit
+
+const voice = new ElevenLabs(
+    {
+        apiKey: "0e2c037kl8561005671b1de345s8765c", // Your API key from Elevenlabs
+    }
+);
+
+const voiceResponse = voice.editVoiceSettings(voiceID, stabilityBoost, similarityBoost).then((res) => {
+  console.log(res);
+});
+```
+
+### Get Voice Settings
+
+Getting voice settings.
+
+```javascript
+const ElevenLabs = require("elevenlabs-node");
+
+const voiceID = "pNInz6obpgDQGcFmaJgB";             // The ID of the voice you want to get
+
+const voice = new ElevenLabs(
+    {
+        apiKey: "0e2c037kl8561005671b1de345s8765c", // Your API key from Elevenlabs
+    }
+);
+
+const voiceResponse = voice.getVoiceSettings(voiceID).then((res) => {
+  console.log(res);
+});
+```
+
+### Delete Voice
+
+Delete voice.
+
+```javascript
+const ElevenLabs = require("elevenlabs-node");
+
+const voiceID = "pNInz6obpgDQGcFmaJgB";             // The ID of the voice you want to get
+
+const voice = new ElevenLabs(
+    {
+        apiKey: "0e2c037kl8561005671b1de345s8765c", // Your API key from Elevenlabs
+    }
+);
+
+const voiceResponse = voice.deleteVoice(voiceID).then((res) => {
+  console.log(res);
+});
+```
+
+### Get Voice
+
+Getting voice details.
+
+```javascript
+const ElevenLabs = require("elevenlabs-node");
+
+const voiceID = "pNInz6obpgDQGcFmaJgB";             // The ID of the voice you want to get
+
+const voice = new ElevenLabs(
+    {
+        apiKey: "0e2c037kl8561005671b1de345s8765c", // Your API key from Elevenlabs
+    }
+);
+
+const voiceResponse = voice.getVoice(voiceID).then((res) => {
+  console.log(res);
+});
+```
+
+### Get Voices
+
+Getting all voice details.
+
+```javascript
+const ElevenLabs = require("elevenlabs-node");
+
+const voice = new ElevenLabs(
+    {
+        apiKey: "0e2c037kl8561005671b1de345s8765c", // Your API key from Elevenlabs
+    }
+);
+
+const voiceResponse = voice.getVoices().then((res) => {
+  console.log(res);
+});
+```
+
+### Get Models
+
+Getting all model details.
+
+```javascript
+const ElevenLabs = require("elevenlabs-node");
+
+const voice = new ElevenLabs(
+    {
+        apiKey: "0e2c037kl8561005671b1de345s8765c", // Your API key from Elevenlabs
+    }
+);
+
+const voiceResponse = voice.getModels().then((res) => {
+  console.log(res);
+});
+```
+
+### Get User Info
+
+Getting user info associated with the API Key.
+
+```javascript
+const ElevenLabs = require("elevenlabs-node");
+
+const voice = new ElevenLabs(
+    {
+        apiKey: "0e2c037kl8561005671b1de345s8765c", // Your API key from Elevenlabs
+    }
+);
+
+const voiceResponse = voice.getUserInfo().then((res) => {
+  console.log(res);
+});
+```
+
+### Get User Subscription
+
+Getting user subscription info associated with the API Key.
+
+```javascript
+const ElevenLabs = require("elevenlabs-node");
+
+const voice = new ElevenLabs(
+    {
+        apiKey: "0e2c037kl8561005671b1de345s8765c", // Your API key from Elevenlabs
+    }
+);
+
+const voiceResponse = voice.getUserSubscription().then((res) => {
+  console.log(res);
+});
+```
+
+### Get Default Voice Settings
+
+Getting default voice settings.
+
+```javascript
+const ElevenLabs = require("elevenlabs-node");
+
+const voiceID = "pNInz6obpgDQGcFmaJgB";             // The ID of the voice you want to get
+
+const voice = new ElevenLabs(
+    {
+        apiKey: "0e2c037kl8561005671b1de345s8765c", // Your API key from Elevenlabs
+    }
+);
+
+const voiceResponse = voice.getDefaultVoiceSettings(voiceID).then((res) => {
+  console.log(res);
 });
 ```
 
