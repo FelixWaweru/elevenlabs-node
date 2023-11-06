@@ -4,7 +4,9 @@ const elevenLabsAPIV1 = "https://api.elevenlabs.io/v1";
 
 
 /**
-Creates an instance of ElevenLabs.
+
+Function initializes ElevenLabs API.
+
 @param {Object} - An object containing the API Key and API Version [default: ElevenLabs V1].
 */
 function ElevenLabs(options = {
@@ -13,7 +15,12 @@ function ElevenLabs(options = {
 }) {
 
     this.apiKey = options.apiKey ? options.apiKey : "";
-    this.voiceId = options.voiceId ? options.voiceId : "pNInz6obpgDQGcFmaJgB";
+    this.voiceId = options.voiceId ? options.voiceId : "pNInz6obpgDQGcFmaJgB"; // Default voice 'Adam'
+
+    if(this.apiKey === ""){
+        console.log("ERR: Missing API key");
+        return;
+    }
 }
 
 
@@ -35,19 +42,21 @@ Function that converts text to speech and saves the audio file to the specified 
 
 @returns {Object} - An object containing the status of the operation.
 */
-ElevenLabs.prototype.textToSpeech = async function(
+ElevenLabs.prototype.textToSpeech = async function({
     fileName,
     textInput,
     stability,
     similarityBoost,
     modelId,
     speakerBoost
-) {
+}) {
     try {
         if (!fileName) {
             console.log("ERR: Missing parameter {fileName}");
+            return;
         } else if (!textInput) {
             console.log("ERR: Missing parameter {textInput}");
+            return;
         }
 
         const voiceURL = `${elevenLabsAPIV1}/text-to-speech/${this.voiceId}`;
@@ -111,17 +120,18 @@ Function that converts text to speech and returns a readable stream of the audio
 
 @returns {Object} - A readable stream of the audio data.
 */
-ElevenLabs.prototype.textToSpeechStream = async function(
+ElevenLabs.prototype.textToSpeechStream = async function({
     textInput,
     stability,
     similarityBoost,
     modelId,
     responseType,
     speakerBoost
-) {
+}) {
     try {
         if (!textInput) {
             console.log("ERR: Missing parameter {textInput}");
+            return;
         }
 
         const voiceURL = `${elevenLabsAPIV1}/text-to-speech/${this.voiceId}/stream`;
@@ -207,10 +217,11 @@ Function that returns an object containing the settings of the specified voice.
 
 @returns {Object} - An object containing the settings of the specified voice.
 */
-ElevenLabs.prototype.getVoiceSettings = async function(voiceId) {
+ElevenLabs.prototype.getVoiceSettings = async function({voiceId}) {
     try {
         if (!voiceId) {
             console.log("ERR: Missing parameter {voiceId}");
+            return;
         }
 
         const voiceURL = `${elevenLabsAPIV1}/voices/${voiceId}/settings`;
@@ -237,10 +248,11 @@ Function that returns an object containing the details of the specified voice.
 
 @returns {Object} - An object containing the details of the specified voice.
 */
-ElevenLabs.prototype.getVoice = async function(voiceId) {
+ElevenLabs.prototype.getVoice = async function({voiceId}) {
     try {
         if (!voiceId) {
             console.log("ERR: Missing parameter {voiceId}");
+            return;
         }
 
         const voiceURL = `${elevenLabsAPIV1}/voices/${voiceId}`;
@@ -267,10 +279,11 @@ Function that returns an object containing the status of the delete operation.
 
 @returns {Object} - An object containing the status of the delete operation.
 */
-ElevenLabs.prototype.deleteVoice = async function(voiceId) {
+ElevenLabs.prototype.deleteVoice = async function({voiceId}) {
     try {
         if (!voiceId) {
             console.log("ERR: Missing parameter {voiceId}");
+            return;
         }
 
         const voiceURL = `${elevenLabsAPIV1}/voices/${voiceId}`;
@@ -301,14 +314,15 @@ Function that returns an object containing the status of the edit operation.
 
 @returns {Object} - An object containing the status of the edit operation.
 */
-ElevenLabs.prototype.editVoiceSettings = async function(
+ElevenLabs.prototype.editVoiceSettings = async function({
     voiceId,
     stability,
     similarityBoost
-) {
+}) {
     try {
         if (!voiceId) {
             console.log("ERR: Missing parameter {voiceId}");
+            return;
         }
 
         const voiceURL = `${elevenLabsAPIV1}/voices/${voiceId}/settings/edit`;
