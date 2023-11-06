@@ -183,7 +183,7 @@ const voice = new ElevenLabs(
 
 const voiceResponse = voice.editVoiceSettings({
     // Required Parameters
-    voiceID:         "pNInz6obpgDQGcFmaJgB"          // The ID of the voice you want to get
+    voiceId:         "pNInz6obpgDQGcFmaJgB",         // The ID of the voice you want to get
     stabilityBoost:  0.5,                            // The Stability Boost for the voice
     similarityBoost: 0.5,                            // The Similarity Boost for the voice
   }).then((res) => {
@@ -206,7 +206,7 @@ const voice = new ElevenLabs(
 
 const voiceResponse = voice.getVoiceSettings({
     // Required Parameters
-    voiceID:         "pNInz6obpgDQGcFmaJgB"          // The ID of the voice you want to get
+    voiceId:         "pNInz6obpgDQGcFmaJgB"          // The ID of the voice you want to get
   }).then((res) => {
     console.log(res);
 });
@@ -227,7 +227,7 @@ const voice = new ElevenLabs(
 
 const voiceResponse = voice.deleteVoice({
     // Required Parameters
-    voiceID:         "pNInz6obpgDQGcFmaJgB"          // The ID of the voice you want to get
+    voiceId:         "pNInz6obpgDQGcFmaJgB"          // The ID of the voice you want to get
   }).then((res) => {
     console.log(res);
 });
@@ -248,7 +248,7 @@ const voice = new ElevenLabs(
 
 const voiceResponse = voice.getVoice({
     // Required Parameters
-    voiceID:         "pNInz6obpgDQGcFmaJgB"          // The ID of the voice you want to get
+    voiceId:         "pNInz6obpgDQGcFmaJgB"          // The ID of the voice you want to get
   }).then((res) => {
     console.log(res);
 });
