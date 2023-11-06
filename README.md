@@ -101,7 +101,7 @@ const ElevenLabs = require("elevenlabs-node");
 
 const voice = new ElevenLabs(
     {
-        apiKey: "0e2c037kl8561005671b1de345s8765c",  // Your API key from Elevenlabs
+        apiKey:  "0e2c037kl8561005671b1de345s8765c", // Your API key from Elevenlabs
         voiceId: "pNInz6obpgDQGcFmaJgB",             // A Voice ID from Elevenlabs
     }
 );
@@ -118,7 +118,7 @@ const ElevenLabs = require("elevenlabs-node");
 
 const voice = new ElevenLabs(
     {
-        apiKey: "0e2c037kl8561005671b1de345s8765c",  // Your API key from Elevenlabs
+        apiKey:  "0e2c037kl8561005671b1de345s8765c", // Your API key from Elevenlabs
         voiceId: "pNInz6obpgDQGcFmaJgB",             // A Voice ID from Elevenlabs
     }
 );
@@ -148,7 +148,7 @@ const fs = require("fs-extra");
 
 const voice = new ElevenLabs(
     {
-        apiKey: "0e2c037kl8561005671b1de345s8765c",  // Your API key from Elevenlabs
+        apiKey:  "0e2c037kl8561005671b1de345s8765c", // Your API key from Elevenlabs
         voiceId: "pNInz6obpgDQGcFmaJgB",             // A Voice ID from Elevenlabs
     }
 );
@@ -177,7 +177,7 @@ const ElevenLabs = require("elevenlabs-node");
 
 const voice = new ElevenLabs(
     {
-        apiKey: "0e2c037kl8561005671b1de345s8765c",  // Your API key from Elevenlabs
+        apiKey:  "0e2c037kl8561005671b1de345s8765c", // Your API key from Elevenlabs
     }
 );
 
@@ -200,7 +200,7 @@ const ElevenLabs = require("elevenlabs-node");
 
 const voice = new ElevenLabs(
     {
-        apiKey: "0e2c037kl8561005671b1de345s8765c",  // Your API key from Elevenlabs
+        apiKey:  "0e2c037kl8561005671b1de345s8765c", // Your API key from Elevenlabs
     }
 );
 
@@ -221,7 +221,7 @@ const ElevenLabs = require("elevenlabs-node");
 
 const voice = new ElevenLabs(
     {
-        apiKey: "0e2c037kl8561005671b1de345s8765c",  // Your API key from Elevenlabs
+        apiKey:  "0e2c037kl8561005671b1de345s8765c", // Your API key from Elevenlabs
     }
 );
 
@@ -242,7 +242,7 @@ const ElevenLabs = require("elevenlabs-node");
 
 const voice = new ElevenLabs(
     {
-        apiKey: "0e2c037kl8561005671b1de345s8765c",  // Your API key from Elevenlabs
+        apiKey:  "0e2c037kl8561005671b1de345s8765c", // Your API key from Elevenlabs
     }
 );
 
@@ -263,7 +263,7 @@ const ElevenLabs = require("elevenlabs-node");
 
 const voice = new ElevenLabs(
     {
-        apiKey: "0e2c037kl8561005671b1de345s8765c",  // Your API key from Elevenlabs
+        apiKey:  "0e2c037kl8561005671b1de345s8765c", // Your API key from Elevenlabs
     }
 );
 
@@ -281,7 +281,7 @@ const ElevenLabs = require("elevenlabs-node");
 
 const voice = new ElevenLabs(
     {
-        apiKey: "0e2c037kl8561005671b1de345s8765c",  // Your API key from Elevenlabs
+        apiKey:  "0e2c037kl8561005671b1de345s8765c", // Your API key from Elevenlabs
     }
 );
 
@@ -299,7 +299,7 @@ const ElevenLabs = require("elevenlabs-node");
 
 const voice = new ElevenLabs(
     {
-        apiKey: "0e2c037kl8561005671b1de345s8765c",  // Your API key from Elevenlabs
+        apiKey:  "0e2c037kl8561005671b1de345s8765c", // Your API key from Elevenlabs
     }
 );
 
@@ -317,7 +317,7 @@ const ElevenLabs = require("elevenlabs-node");
 
 const voice = new ElevenLabs(
     {
-        apiKey: "0e2c037kl8561005671b1de345s8765c",  // Your API key from Elevenlabs
+        apiKey:  "0e2c037kl8561005671b1de345s8765c", // Your API key from Elevenlabs
     }
 );
 
@@ -335,7 +335,7 @@ const ElevenLabs = require("elevenlabs-node");
 
 const voice = new ElevenLabs(
     {
-        apiKey: "0e2c037kl8561005671b1de345s8765c",  // Your API key from Elevenlabs
+        apiKey:  "0e2c037kl8561005671b1de345s8765c", // Your API key from Elevenlabs
     }
 );
 
