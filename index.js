@@ -40,7 +40,7 @@ const textToSpeech = async (
     const voiceURL = `${elevenLabsAPI}/text-to-speech/${voiceID}`;
     const stabilityValue = stability ? stability : 0;
     const similarityBoostValue = similarityBoost ? similarityBoost : 0;
-    const style = style ? style : 0;
+    const styleValue = style ? style : 0;
 
     const response = await axios({
       method: "POST",
@@ -50,7 +50,7 @@ const textToSpeech = async (
         voice_settings: {
           stability: stabilityValue,
           similarity_boost: similarityBoostValue,
-          style: style,
+          style: styleValue,
           use_speaker_boost: true
         },
         model_id: modelId ? modelId : undefined,
