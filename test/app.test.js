@@ -1,7 +1,8 @@
 const ElevenLabs = require('../index.js');
+require('dotenv').config()
 
 const apiKey = process.env.ELEVENLABS_API_KEY;
-const voiceID = process.env.ELEVENLABS_VOICE_ID;
+const voiceId = process.env.ELEVENLABS_VOICE_ID;
 const fileName = 'audio.mp3';
 const textInput = 'mozzy is cool';
 const stability = '0.5';
@@ -23,7 +24,7 @@ describe("Eleven Labs Node Unit Test", () => {
 	test("Test textToSpeech", async () => {
 		// Execute test
 		await process.nextTick(() => {});
-		const response = await script.textToSpeech(fileName, textInput, stability, similarityBoost, modelId, speakerBoost);
+		const response = await script.textToSpeech({fileName, textInput, stability, similarityBoost, modelId, speakerBoost});
 
 		// Response check
 		expect(response.status).toEqual('ok');
@@ -33,7 +34,7 @@ describe("Eleven Labs Node Unit Test", () => {
 	test("Test textToSpeechStream", async () => {
 		// Execute test
 		await process.nextTick(() => {});
-		const response = await script.textToSpeechStream(textInput, stability, similarityBoost, modelId, responseType, speakerBoost);
+		const response = await script.textToSpeechStream({textInput, stability, similarityBoost, modelId, responseType, speakerBoost});
 
 		// Response check
 		expect(!response).toBeFalsy();
@@ -64,7 +65,7 @@ describe("Eleven Labs Node Unit Test", () => {
 	test("Test getVoiceSettings", async () => {
 		// Execute test
 		await process.nextTick(() => {});
-		const response = await script.getVoiceSettings(voiceId);
+		const response = await script.getVoiceSettings({voiceId});
 
 		// Response check
 		expect(response.stability).toBeTruthy();
@@ -75,7 +76,7 @@ describe("Eleven Labs Node Unit Test", () => {
 	test("Test getVoice", async () => {
 		// Execute test
 		await process.nextTick(() => {});
-		const response = await script.getVoice(voiceId);
+		const response = await script.getVoice({voiceId});
 
 		// Response check
 		expect(response.voice_id).toBeTruthy();
@@ -85,7 +86,7 @@ describe("Eleven Labs Node Unit Test", () => {
 	test("Test editVoiceSettings", async () => {
 		// Execute test
 		await process.nextTick(() => {});
-		const response = await script.editVoiceSettings(voiceId, stability, similarityBoost);
+		const response = await script.editVoiceSettings({voiceId, stability, similarityBoost});
 
 		// Response check
 		expect(response.status).toEqual('ok');
