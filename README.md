@@ -187,7 +187,7 @@ const voiceResponse = voice.editVoiceSettings({
     stabilityBoost:  0.5,                            // The Stability Boost for the voice
     similarityBoost: 0.5,                            // The Similarity Boost for the voice
   }).then((res) => {
-  console.log(res);
+    console.log(res);
 });
 ```
 

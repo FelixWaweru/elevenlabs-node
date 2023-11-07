@@ -48,6 +48,7 @@ ElevenLabs.prototype.textToSpeech = async function({
     stability,
     similarityBoost,
     modelId,
+    style,
     speakerBoost
 }) {
     try {
@@ -62,6 +63,7 @@ ElevenLabs.prototype.textToSpeech = async function({
         const voiceURL = `${elevenLabsAPIV1}/text-to-speech/${this.voiceId}`;
         const stabilityValue = stability ? stability : 0;
         const similarityBoostValue = similarityBoost ? similarityBoost : 0;
+        const styleValue = style ? style : 0;
 
         const response = await axios({
             method: "POST",
@@ -71,6 +73,7 @@ ElevenLabs.prototype.textToSpeech = async function({
                 voice_settings: {
                     stability: stabilityValue,
                     similarity_boost: similarityBoostValue,
+                    style: styleValue,
                     use_speaker_boost: speakerBoost,
                 },
                 model_id: modelId ? modelId : undefined,
@@ -126,6 +129,7 @@ ElevenLabs.prototype.textToSpeechStream = async function({
     similarityBoost,
     modelId,
     responseType,
+    style,
     speakerBoost
 }) {
     try {
@@ -137,6 +141,7 @@ ElevenLabs.prototype.textToSpeechStream = async function({
         const voiceURL = `${elevenLabsAPIV1}/text-to-speech/${this.voiceId}/stream`;
         const stabilityValue = stability ? stability : 0;
         const similarityBoostValue = similarityBoost ? similarityBoost : 0;
+        const styleValue = style ? style : 0;
 
         const response = await axios({
             method: "POST",
@@ -146,6 +151,7 @@ ElevenLabs.prototype.textToSpeechStream = async function({
                 voice_settings: {
                     stability: stabilityValue,
                     similarity_boost: similarityBoostValue,
+                    style: styleValue,
                     use_speaker_boost: speakerBoost,
                 },
                 model_id: modelId ? modelId : undefined,
