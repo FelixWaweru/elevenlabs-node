@@ -3,3 +3,4 @@ package-lock.json
 .DS_Store
 .eslintrc.json
 audio.mp3
+.env

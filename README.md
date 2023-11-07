@@ -15,6 +15,11 @@
     </a>
     <br />
     <br />
+    <a href="https://github.com/FelixWaweru/elevenlabs-node/actions/workflows/npm-publish.yml">
+      <img alt="NPM Package Build" src="https://github.com/FelixWaweru/elevenlabs-node/actions/workflows/npm-publish.yml/badge.svg" />
+    </a>
+    <br />
+    <br />
     <a>
       <img src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white"/>
     </a>
@@ -45,17 +50,31 @@ This is an open source Eleven Labs NodeJS package for converting text to speech 
 
 | <div style="width:290px">Function</div> | Parameters                                                                  | Endpoint                               |
 | --------------------------------------- | --------------------------------------------------------------------------- | -------------------------------------- |
-| `textToSpeech`                          | (apiKey, voiceID, fileName, textInput, stability, similarityBoost, modelId) | `/v1/text-to-speech/{voice_id}`        |
-| `textToSpeechStream`                    | (apiKey, voiceID, textInput, stability, similarityBoost, modelId)           | `/v1/text-to-speech/{voice_id}/stream` |
-| `getVoices`                             | (apiKey)                                                                    | `/v1/voices`                           |
-| `getDefaultVoiceSettings`               | N/A                                                                         | `/v1/voices/settings/default`          |
-| `getVoiceSettings`                      | (apiKey, voiceID)                                                           | `/v1/voices/{voice_id}/settings`       |
-| `getVoice`                              | (apiKey, voiceID)                                                           | `/v1/voices/{voice_id}`                |
-| `deleteVoice`                           | (apiKey, voiceID)                                                           | `/v1/voices/{voice_id}`                |
-| `editVoiceSettings`                     | (apiKey, voiceID, stability, similarityBoost)                               | `/v1/voices/{voice_id}/settings/edit`  |
-| `getModels`                             | (apiKey)                                                                    | `/v1/models`                           |
-| `getUserInfo`                             | (apiKey)                                                                    | `/v1/user`                           |
-| `getUserSubscription`                             | (apiKey)                                                                    | `/v1/user/subscription`                           |
+| `textToSpeech`                          | ({voiceId, fileName, textInput, stability, similarityBoost, modelId, style, speakerBoost})                                | `/v1/text-to-speech/{voice_id}`        |
+| `textToSpeechStream`                    | ({voiceId, textInput, stability, similarityBoost, modelId, responseType, style, speakerBoost})                                | `/v1/text-to-speech/{voice_id}/stream` |
+| `editVoiceSettings`                     | ({voiceId, stability, similarityBoost})                                      | `/v1/voices/{voice_id}/settings/edit`  |
+| `getVoiceSettings`                      | ({voiceId})                                                                  | `/v1/voices/{voice_id}/settings`       |
+| `deleteVoice`                           | ({voiceId})                                                                  | `/v1/voices/{voice_id}`                |
+| `getVoice`                              | ({voiceId})                                                                  | `/v1/voices/{voice_id}`                |
+| `getVoices`                             | N/A                                                                          | `/v1/voices`                    |
+| `getModels`                             | N/A                                                                          | `/v1/models`                    |
+| `getUserInfo`                           | N/A                                                                          | `/v1/user`                      |
+| `getUserSubscription`                   | N/A                                                                          | `/v1/user/subscription`              |
+| `getDefaultVoiceSettings`               | N/A                                                                          | `/v1/voices/settings/default`          |
+
+## Parameters
+| <div style="width:290px">Variable</div> | Description                                                                 | Type                                   |
+| --------------------------------------- | --------------------------------------------------------------------------- | -------------------------------------- |
+| `fileName`                              | Name and file path for your audio file e.g (`./gen/hello`)                                    | `String`                                 |
+| `textInput`                             | Text to be converted into audio e.g (`Hello`)                                      | `String`                                 |
+| `stability`                             | Stability for Text to Speech default (`0`)                                            | `Float`                                  |
+| `similarityBoost`                       | Similarity Boost for Text to Speech default (`0`)                                            | `Float`                                  |
+| `voiceId`                               | ElevenLabs Voice ID e.g (`pNInz6obpgDQGcFmaJgB`)                       | `String`                                 |
+| `modelId`                               | ElevenLabs Model ID e.g (`elevenlabs_multilingual_v2`)                 | `String`                                 |
+| `responseType`                          | Streaming response type e.g (`stream`)                                 | `String`                                 |
+| `speakerBoost`                          | Speaker Boost for Text to Speech e.g (`true`)                          | `Boolean`                                |
+| `style`                       | Style Exaggeration for Text to Speech (0-100) default (`0`)                                            | `Integer`                              |
+
 
 ## Requirements
 
@@ -69,50 +88,264 @@ To install the Elevenlabs package, run the following command:
 npm install elevenlabs-node
 ```
 
+## Setup
+
+Setup the ElevenLabs configurations for your project.
+
+| <div style="width:290px">Variable</div> | Description                                                                 | Default                                |
+| --------------------------------------- | --------------------------------------------------------------------------- | -------------------------------------- |
+| `apiKey`                                | (`Required`) Your API key from Elevenlabs                                     | N/A                                    |
+| `voiceId`                               | (`Optional`) A Voice ID from Elevenlabs                                     | Adam (`pNInz6obpgDQGcFmaJgB`)          |
+
+```javascript
+const ElevenLabs = require("elevenlabs-node");
+
+const voice = new ElevenLabs(
+    {
+        apiKey:  "0e2c037kl8561005671b1de345s8765c", // Your API key from Elevenlabs
+        voiceId: "pNInz6obpgDQGcFmaJgB",             // A Voice ID from Elevenlabs
+    }
+);
+```
+
 ## Usage
+
+### Text To Speech
+
+Generating an audio file from text.
+
+```javascript
+const ElevenLabs = require("elevenlabs-node");
+
+const voice = new ElevenLabs(
+    {
+        apiKey:  "0e2c037kl8561005671b1de345s8765c", // Your API key from Elevenlabs
+        voiceId: "pNInz6obpgDQGcFmaJgB",             // A Voice ID from Elevenlabs
+    }
+);
+
+voice.textToSpeech({
+    // Required Parameters
+    fileName:        "audio.mp3",                    // The name of your audio file
+    textInput:       "mozzy is cool",                // The text you wish to convert to speech
+
+    // Optional Parameters
+    voiceId:         "21m00Tcm4TlvDq8ikWAM",         // A different Voice ID from the default
+    stability:       0.5,                            // The stability for the converted speech
+    similarityBoost: 0.5,                            // The similarity boost for the converted speech
+    modelId:         "elevenlabs_multilingual_v2",   // The ElevenLabs Model ID
+    style:           1,                              // The style exaggeration for the converted speech
+    speakerBoost:    true                            // The speaker boost for the converted speech
+  }).then((res) => {
+    console.log(res);
+});
+```
+
+### Text To Speech Stream
+
+Generating an audio stream from text.
+
+```javascript
+const ElevenLabs = require("elevenlabs-node");
+const fs = require("fs-extra");
+
+const voice = new ElevenLabs(
+    {
+        apiKey:  "0e2c037kl8561005671b1de345s8765c", // Your API key from Elevenlabs
+        voiceId: "pNInz6obpgDQGcFmaJgB",             // A Voice ID from Elevenlabs
+    }
+);
+
+const voiceResponse = voice.textToSpeechStream({
+    // Required Parameters
+    textInput:       "mozzy is cool",                // The text you wish to convert to speech
+
+    // Optional Parameters
+    voiceId:         "21m00Tcm4TlvDq8ikWAM",         // A different Voice ID from the default
+    stability:       0.5,                            // The stability for the converted speech
+    similarityBoost: 0.5,                            // The similarity boost for the converted speech
+    modelId:         "elevenlabs_multilingual_v2",   // The ElevenLabs Model ID
+    style:           1,                              // The style exaggeration for the converted speech
+    responseType:    "stream",                       // The streaming type (arraybuffer, stream, json)
+    speakerBoost:    true                            // The speaker boost for the converted speech
+  }).then((res) => {
+    res.pipe(fs.createWriteStream(fileName));
+});
+```
+
+### Edit Voice Settings
+
+Editing voice settings.
+
+```javascript
+const ElevenLabs = require("elevenlabs-node");
+
+const voice = new ElevenLabs(
+    {
+        apiKey:  "0e2c037kl8561005671b1de345s8765c", // Your API key from Elevenlabs
+    }
+);
+
+const voiceResponse = voice.editVoiceSettings({
+    // Required Parameters
+    voiceId:         "pNInz6obpgDQGcFmaJgB",         // The ID of the voice you want to edit
+    stabilityBoost:  0.5,                            // The Stability Boost for the voice
+    similarityBoost: 0.5,                            // The Similarity Boost for the voice
+  }).then((res) => {
+    console.log(res);
+});
+```
+
+### Get Voice Settings
+
+Getting voice settings.
+
+```javascript
+const ElevenLabs = require("elevenlabs-node");
+
+const voice = new ElevenLabs(
+    {
+        apiKey:  "0e2c037kl8561005671b1de345s8765c", // Your API key from Elevenlabs
+    }
+);
+
+const voiceResponse = voice.getVoiceSettings({
+    // Required Parameters
+    voiceId:         "pNInz6obpgDQGcFmaJgB"          // The ID of the voice you want to get
+  }).then((res) => {
+    console.log(res);
+});
+```
+
+### Delete Voice
+
+Delete voice.
+
+```javascript
+const ElevenLabs = require("elevenlabs-node");
+
+const voice = new ElevenLabs(
+    {
+        apiKey:  "0e2c037kl8561005671b1de345s8765c", // Your API key from Elevenlabs
+    }
+);
+
+const voiceResponse = voice.deleteVoice({
+    // Required Parameters
+    voiceId:         "pNInz6obpgDQGcFmaJgB"          // The ID of the voice you want to delete
+  }).then((res) => {
+    console.log(res);
+});
+```
+
+### Get Voice
 
 Getting voice details.
 
 ```javascript
-const voice = require("elevenlabs-node");
+const ElevenLabs = require("elevenlabs-node");
 
-const apiKey = "0e2c037kl8561005671b1de345s8765c"; // Your API key from Elevenlabs
-const voiceID = "pNInz6obpgDQGcFmaJgB"; // The ID of the voice you want to get
+const voice = new ElevenLabs(
+    {
+        apiKey:  "0e2c037kl8561005671b1de345s8765c", // Your API key from Elevenlabs
+    }
+);
 
-const voiceResponse = voice.getVoice(apiKey, voiceID).then((res) => {
+const voiceResponse = voice.getVoice({
+    // Required Parameters
+    voiceId:         "pNInz6obpgDQGcFmaJgB"          // The ID of the voice you want to get
+  }).then((res) => {
+    console.log(res);
+});
+```
+
+### Get Voices
+
+Getting all voice details.
+
+```javascript
+const ElevenLabs = require("elevenlabs-node");
+
+const voice = new ElevenLabs(
+    {
+        apiKey:  "0e2c037kl8561005671b1de345s8765c", // Your API key from Elevenlabs
+    }
+);
+
+const voiceResponse = voice.getVoices().then((res) => {
   console.log(res);
 });
 ```
 
-Generating an audio file from text
+### Get Models
+
+Getting all model details.
 
 ```javascript
-const voice = require("elevenlabs-node");
-const fs = require("fs-extra");
+const ElevenLabs = require("elevenlabs-node");
 
-const apiKey = "0e2c037kl8561005671b1de345s8765c"; // Your API key from Elevenlabs
-const voiceID = "pNInz6obpgDQGcFmaJgB"; // The ID of the voice you want to get
-const fileName = "audio.mp3"; // The name of your audio file
-const textInput = "mozzy is cool"; // The text you wish to convert to speech
+const voice = new ElevenLabs(
+    {
+        apiKey:  "0e2c037kl8561005671b1de345s8765c", // Your API key from Elevenlabs
+    }
+);
 
-voice.textToSpeech(apiKey, voiceID, fileName, textInput).then((res) => {
+const voiceResponse = voice.getModels().then((res) => {
   console.log(res);
 });
 ```
 
-Generating an audio stream from text
+### Get User Info
+
+Getting user info associated with the API Key.
 
 ```javascript
-const voice = require("elevenlabs-node");
-const fs = require("fs-extra");
+const ElevenLabs = require("elevenlabs-node");
 
-const apiKey = "0e2c037kl8561005671b1de345s8765c"; // Your API key from Elevenlabs
-const voiceID = "pNInz6obpgDQGcFmaJgB"; // The ID of the voice you want to get
-const fileName = "audio.mp3"; // The name of your audio file
-const textInput = "mozzy is cool"; // The text you wish to convert to speech
+const voice = new ElevenLabs(
+    {
+        apiKey:  "0e2c037kl8561005671b1de345s8765c", // Your API key from Elevenlabs
+    }
+);
 
-voice.textToSpeechStream(apiKey, voiceID, textInput).then((res) => {
-  res.pipe(fs.createWriteStream(fileName));
+const voiceResponse = voice.getUserInfo().then((res) => {
+  console.log(res);
+});
+```
+
+### Get User Subscription
+
+Getting user subscription info associated with the API Key.
+
+```javascript
+const ElevenLabs = require("elevenlabs-node");
+
+const voice = new ElevenLabs(
+    {
+        apiKey:  "0e2c037kl8561005671b1de345s8765c", // Your API key from Elevenlabs
+    }
+);
+
+const voiceResponse = voice.getUserSubscription().then((res) => {
+  console.log(res);
+});
+```
+
+### Get Default Voice Settings
+
+Getting default voice settings.
+
+```javascript
+const ElevenLabs = require("elevenlabs-node");
+
+const voice = new ElevenLabs(
+    {
+        apiKey:  "0e2c037kl8561005671b1de345s8765c", // Your API key from Elevenlabs
+    }
+);
+
+const voiceResponse = voice.getDefaultVoiceSettings().then((res) => {
+    console.log(res);
 });
 ```
 
