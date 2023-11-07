@@ -50,8 +50,8 @@ This is an open source Eleven Labs NodeJS package for converting text to speech 
 
 | <div style="width:290px">Function</div> | Parameters                                                                  | Endpoint                               |
 | --------------------------------------- | --------------------------------------------------------------------------- | -------------------------------------- |
-| `textToSpeech`                          | ({fileName, textInput, stability, similarityBoost, modelId, speakerBoost})                                | `/v1/text-to-speech/{voice_id}`        |
-| `textToSpeechStream`                    | ({textInput, stability, similarityBoost, modelId, responseType, speakerBoost})                                | `/v1/text-to-speech/{voice_id}/stream` |
+| `textToSpeech`                          | ({fileName, textInput, stability, similarityBoost, modelId, style, speakerBoost})                                | `/v1/text-to-speech/{voice_id}`        |
+| `textToSpeechStream`                    | ({textInput, stability, similarityBoost, modelId, responseType, style, speakerBoost})                                | `/v1/text-to-speech/{voice_id}/stream` |
 | `editVoiceSettings`                     | ({voiceId, stability, similarityBoost})                                      | `/v1/voices/{voice_id}/settings/edit`  |
 | `getVoiceSettings`                      | ({voiceId})                                                                  | `/v1/voices/{voice_id}/settings`       |
 | `deleteVoice`                           | ({voiceId})                                                                  | `/v1/voices/{voice_id}`                |
@@ -67,12 +67,13 @@ This is an open source Eleven Labs NodeJS package for converting text to speech 
 | --------------------------------------- | --------------------------------------------------------------------------- | -------------------------------------- |
 | `fileName`                              | Name and file path for your audio file e.g (`./gen/hello`)                                    | `String`                                 |
 | `textInput`                             | Text to be converted into audio e.g (`Hello`)                                      | `String`                                 |
-| `stability`                             | Stability for Text to Speech e.g (`0.5`)                                            | `Float`                                  |
-| `similarityBoost`                       | Similarity Boost for Text to Speech e.g (`0.5`)                                            | `Float`                                  |
+| `stability`                             | Stability for Text to Speech default (`0`)                                            | `Float`                                  |
+| `similarityBoost`                       | Similarity Boost for Text to Speech default (`0`)                                            | `Float`                                  |
 | `voiceId`                               | ElevenLabs Voice ID e.g (`pNInz6obpgDQGcFmaJgB`)                       | `String`                                 |
 | `modelId`                               | ElevenLabs Model ID e.g (`elevenlabs_multilingual_v2`)                 | `String`                                 |
 | `responseType`                          | Streaming response type e.g (`stream`)                                 | `String`                                 |
 | `speakerBoost`                          | Speaker Boost for Text to Speech e.g (`true`)                          | `Boolean`                                |
+| `style`                       | Style Exaggeration for Text to Speech (0-100) default (`0`)                                            | `Integer`                              |
 
 
 ## Requirements
@@ -132,6 +133,7 @@ voice.textToSpeech({
     stability:       0.5,                            // The stability for the converted speech
     similarityBoost: 0.5,                            // The similarity boost for the converted speech
     modelId:         "elevenlabs_multilingual_v2",   // The ElevenLabs Model ID
+    style:           1,                              // The style exaggeration for the converted speech
     speakerBoost:    true                            // The speaker boost for the converted speech
   }).then((res) => {
     console.log(res);
@@ -161,6 +163,7 @@ const voiceResponse = voice.textToSpeechStream({
     stability:       0.5,                            // The stability for the converted speech
     similarityBoost: 0.5,                            // The similarity boost for the converted speech
     modelId:         "elevenlabs_multilingual_v2",   // The ElevenLabs Model ID
+    style:           1,                              // The style exaggeration for the converted speech
     responseType:    "stream",                       // The streaming type (arraybuffer, stream, json)
     speakerBoost:    true                            // The speaker boost for the converted speech
   }).then((res) => {
