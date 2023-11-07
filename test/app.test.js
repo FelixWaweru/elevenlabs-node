@@ -25,7 +25,7 @@ describe("Eleven Labs Node Unit Test", () => {
 	test("Test textToSpeech", async () => {
 		// Execute test
 		await process.nextTick(() => {});
-		const response = await script.textToSpeech({fileName, textInput, stability, similarityBoost, modelId, style, speakerBoost});
+		const response = await script.textToSpeech({voiceId, fileName, textInput, stability, similarityBoost, modelId, style, speakerBoost});
 
 		// Response check
 		expect(response.status).toEqual('ok');
@@ -35,7 +35,7 @@ describe("Eleven Labs Node Unit Test", () => {
 	test("Test textToSpeechStream", async () => {
 		// Execute test
 		await process.nextTick(() => {});
-		const response = await script.textToSpeechStream({textInput, stability, similarityBoost, modelId, responseType, style, speakerBoost});
+		const response = await script.textToSpeechStream({voiceId, textInput, stability, similarityBoost, modelId, responseType, style, speakerBoost});
 
 		// Response check
 		expect(!response).toBeFalsy();
@@ -121,5 +121,28 @@ describe("Eleven Labs Node Unit Test", () => {
 
 		// Response check
 		expect(response.status).toBeTruthy();
+	});
+});
+
+describe("Required Variables Test", () => {
+
+    // textToSpeech test
+	test("Test textToSpeech", async () => {
+		// Execute test
+		await process.nextTick(() => {});
+		const response = await script.textToSpeech({fileName, textInput});
+
+		// Response check
+		expect(response.status).toEqual('ok');
+	});
+
+        // textToSpeechStream test
+	test("Test textToSpeechStream", async () => {
+		// Execute test
+		await process.nextTick(() => {});
+		const response = await script.textToSpeechStream({textInput});
+
+		// Response check
+		expect(!response).toBeFalsy();
 	});
 });
