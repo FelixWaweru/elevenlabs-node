@@ -28,6 +28,8 @@ function ElevenLabs(options = {
 
 Function that converts text to speech and saves the audio file to the specified file name.
 
+@param {string} voiceId - A different ID for the voice to use with the text-to-speech conversion.
+
 @param {string} fileName - The name of the file to save the audio data to.
 
 @param {string} textInput - The text to convert to speech.
@@ -43,6 +45,7 @@ Function that converts text to speech and saves the audio file to the specified 
 @returns {Object} - An object containing the status of the operation.
 */
 ElevenLabs.prototype.textToSpeech = async function({
+    voiceId,
     fileName,
     textInput,
     stability,
@@ -60,7 +63,8 @@ ElevenLabs.prototype.textToSpeech = async function({
             return;
         }
 
-        const voiceURL = `${elevenLabsAPIV1}/text-to-speech/${this.voiceId}`;
+        const voiceIdValue = voiceId ? voiceId : this.voiceId;
+        const voiceURL = `${elevenLabsAPIV1}/text-to-speech/${voiceIdValue}`;
         const stabilityValue = stability ? stability : 0;
         const similarityBoostValue = similarityBoost ? similarityBoost : 0;
         const styleValue = style ? style : 0;
@@ -109,6 +113,8 @@ ElevenLabs.prototype.textToSpeech = async function({
 
 Function that converts text to speech and returns a readable stream of the audio data.
 
+@param {string} voiceId - A different ID for the voice to use with the text-to-speech conversion.
+
 @param {string} textInput - The text to convert to speech.
 
 @param {number} stability - The stability setting for the voice.
@@ -124,6 +130,7 @@ Function that converts text to speech and returns a readable stream of the audio
 @returns {Object} - A readable stream of the audio data.
 */
 ElevenLabs.prototype.textToSpeechStream = async function({
+    voiceId,
     textInput,
     stability,
     similarityBoost,
@@ -138,7 +145,8 @@ ElevenLabs.prototype.textToSpeechStream = async function({
             return;
         }
 
-        const voiceURL = `${elevenLabsAPIV1}/text-to-speech/${this.voiceId}/stream`;
+        const voiceIdValue = voiceId ? voiceId : this.voiceId;
+        const voiceURL = `${elevenLabsAPIV1}/text-to-speech/${voiceIdValue}/stream`;
         const stabilityValue = stability ? stability : 0;
         const similarityBoostValue = similarityBoost ? similarityBoost : 0;
         const styleValue = style ? style : 0;
