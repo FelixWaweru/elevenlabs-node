@@ -50,8 +50,8 @@ This is an open source Eleven Labs NodeJS package for converting text to speech 
 
 | <div style="width:290px">Function</div> | Parameters                                                                  | Endpoint                               |
 | --------------------------------------- | --------------------------------------------------------------------------- | -------------------------------------- |
-| `textToSpeech`                          | ({fileName, textInput, stability, similarityBoost, modelId, style, speakerBoost})                                | `/v1/text-to-speech/{voice_id}`        |
-| `textToSpeechStream`                    | ({textInput, stability, similarityBoost, modelId, responseType, style, speakerBoost})                                | `/v1/text-to-speech/{voice_id}/stream` |
+| `textToSpeech`                          | ({voiceId, fileName, textInput, stability, similarityBoost, modelId, style, speakerBoost})                                | `/v1/text-to-speech/{voice_id}`        |
+| `textToSpeechStream`                    | ({voiceId, textInput, stability, similarityBoost, modelId, responseType, style, speakerBoost})                                | `/v1/text-to-speech/{voice_id}/stream` |
 | `editVoiceSettings`                     | ({voiceId, stability, similarityBoost})                                      | `/v1/voices/{voice_id}/settings/edit`  |
 | `getVoiceSettings`                      | ({voiceId})                                                                  | `/v1/voices/{voice_id}/settings`       |
 | `deleteVoice`                           | ({voiceId})                                                                  | `/v1/voices/{voice_id}`                |
@@ -130,6 +130,7 @@ voice.textToSpeech({
     textInput:       "mozzy is cool",                // The text you wish to convert to speech
 
     // Optional Parameters
+    voiceId:         "21m00Tcm4TlvDq8ikWAM",         // A different Voice ID from the default
     stability:       0.5,                            // The stability for the converted speech
     similarityBoost: 0.5,                            // The similarity boost for the converted speech
     modelId:         "elevenlabs_multilingual_v2",   // The ElevenLabs Model ID
@@ -160,6 +161,7 @@ const voiceResponse = voice.textToSpeechStream({
     textInput:       "mozzy is cool",                // The text you wish to convert to speech
 
     // Optional Parameters
+    voiceId:         "21m00Tcm4TlvDq8ikWAM",         // A different Voice ID from the default
     stability:       0.5,                            // The stability for the converted speech
     similarityBoost: 0.5,                            // The similarity boost for the converted speech
     modelId:         "elevenlabs_multilingual_v2",   // The ElevenLabs Model ID
@@ -186,7 +188,7 @@ const voice = new ElevenLabs(
 
 const voiceResponse = voice.editVoiceSettings({
     // Required Parameters
-    voiceId:         "pNInz6obpgDQGcFmaJgB",         // The ID of the voice you want to get
+    voiceId:         "pNInz6obpgDQGcFmaJgB",         // The ID of the voice you want to edit
     stabilityBoost:  0.5,                            // The Stability Boost for the voice
     similarityBoost: 0.5,                            // The Similarity Boost for the voice
   }).then((res) => {
@@ -230,7 +232,7 @@ const voice = new ElevenLabs(
 
 const voiceResponse = voice.deleteVoice({
     // Required Parameters
-    voiceId:         "pNInz6obpgDQGcFmaJgB"          // The ID of the voice you want to get
+    voiceId:         "pNInz6obpgDQGcFmaJgB"          // The ID of the voice you want to delete
   }).then((res) => {
     console.log(res);
 });
