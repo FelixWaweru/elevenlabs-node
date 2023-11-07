@@ -9,6 +9,7 @@ const stability = '0.5';
 const similarityBoost = '0.5';
 const modelId = 'eleven_multilingual_v1';
 const responseType = 'stream';
+const style = 0;
 const speakerBoost = true;
 
 const script = new ElevenLabs(
@@ -24,7 +25,7 @@ describe("Eleven Labs Node Unit Test", () => {
 	test("Test textToSpeech", async () => {
 		// Execute test
 		await process.nextTick(() => {});
-		const response = await script.textToSpeech({fileName, textInput, stability, similarityBoost, modelId, speakerBoost});
+		const response = await script.textToSpeech({fileName, textInput, stability, similarityBoost, modelId, style, speakerBoost});
 
 		// Response check
 		expect(response.status).toEqual('ok');
@@ -34,7 +35,7 @@ describe("Eleven Labs Node Unit Test", () => {
 	test("Test textToSpeechStream", async () => {
 		// Execute test
 		await process.nextTick(() => {});
-		const response = await script.textToSpeechStream({textInput, stability, similarityBoost, modelId, responseType, speakerBoost});
+		const response = await script.textToSpeechStream({textInput, stability, similarityBoost, modelId, responseType, style, speakerBoost});
 
 		// Response check
 		expect(!response).toBeFalsy();
