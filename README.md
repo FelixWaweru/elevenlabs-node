@@ -70,7 +70,7 @@ This is an open source Eleven Labs NodeJS package for converting text to speech 
 | `stability`                             | Stability for Text to Speech default (`0`)                                            | `Float`                                  |
 | `similarityBoost`                       | Similarity Boost for Text to Speech default (`0`)                                            | `Float`                                  |
 | `voiceId`                               | ElevenLabs Voice ID e.g (`pNInz6obpgDQGcFmaJgB`)                       | `String`                                 |
-| `modelId`                               | ElevenLabs Model ID e.g (`eleven_multilingual_v2`)                 | `String`                                 |
+| `modelId`                               | ElevenLabs Model ID e.g (`eleven_multilingual_v2`)                     | `String`                                 |
 | `responseType`                          | Streaming response type e.g (`stream`)                                 | `String`                                 |
 | `speakerBoost`                          | Speaker Boost for Text to Speech e.g (`true`)                          | `Boolean`                                |
 | `style`                       | Style Exaggeration for Text to Speech (0-100) default (`0`)                                            | `Integer`                              |
@@ -133,7 +133,7 @@ voice.textToSpeech({
     voiceId:         "21m00Tcm4TlvDq8ikWAM",         // A different Voice ID from the default
     stability:       0.5,                            // The stability for the converted speech
     similarityBoost: 0.5,                            // The similarity boost for the converted speech
-    modelId:         "eleven_multilingual_v2",   // The ElevenLabs Model ID
+    modelId:         "eleven_multilingual_v2",       // The ElevenLabs Model ID
     style:           1,                              // The style exaggeration for the converted speech
     speakerBoost:    true                            // The speaker boost for the converted speech
   }).then((res) => {
@@ -164,7 +164,7 @@ const voiceResponse = voice.textToSpeechStream({
     voiceId:         "21m00Tcm4TlvDq8ikWAM",         // A different Voice ID from the default
     stability:       0.5,                            // The stability for the converted speech
     similarityBoost: 0.5,                            // The similarity boost for the converted speech
-    modelId:         "eleven_multilingual_v2",   // The ElevenLabs Model ID
+    modelId:         "eleven_multilingual_v2",       // The ElevenLabs Model ID
     style:           1,                              // The style exaggeration for the converted speech
     responseType:    "stream",                       // The streaming type (arraybuffer, stream, json)
     speakerBoost:    true                            // The speaker boost for the converted speech
