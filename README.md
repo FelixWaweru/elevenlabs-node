@@ -1,5 +1,5 @@
 <p align="center">
- <img width="100px" src="https://i.imgur.com/w06EN2l.jpg" align="center" alt="Eleven Labs" />
+ <img width="100px" src="https://i.imgur.com/w06EN2l.jpg" align="center" alt="Eleven Labs Logo" />
  <h2 align="center">Eleven Labs Node</h2>
  <p align="center">Eleven Labs NodeJS package for converting text to speech!</p>
 </p>
