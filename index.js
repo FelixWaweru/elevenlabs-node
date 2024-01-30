@@ -287,6 +287,51 @@ ElevenLabs.prototype.getVoice = async function({voiceId}) {
 
 /**
 
+Function that adds a voice on ElevenLabs.
+
+@param {string} description - The description of the voice to create.
+
+@param {array} files - One or more audio files to clone the voice from.
+
+@param {number} labels - The serialized labels dictionary for the voice.
+
+@param {string} name - The name that identifies this voice. This will be displayed in the dropdown of the website.
+
+@returns {Object} - An object containing the status of the add operation.
+*/
+ElevenLabs.prototype.addVoice = async function({
+    description,
+    files,
+    labels,
+    name
+}){
+    try {
+        if (!files) {
+            console.log("ERR: Missing parameter {files}");
+            return;
+        } else if (!name) {
+            console.log("ERR: Missing parameter {name}");
+            return;
+        }
+
+        const voiceURL = `${elevenLabsAPIV1}/voices/add`;
+
+        const response = await axios({
+            method: "POST",
+            url: voiceURL,
+            headers: {
+                "xi-api-key": this.apiKey,
+            },
+        });
+
+        return response.data;
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+/**
+
 Function that returns an object containing the status of the delete operation.
 
 @param {string} voiceId - The ID of the voice to use for the text-to-speech conversion.
