@@ -52,7 +52,8 @@ ElevenLabs.prototype.textToSpeech = async function({
     similarityBoost,
     modelId,
     style,
-    speakerBoost
+    speakerBoost,
+    downloadFile=true
 }) {
     try {
         if (!fileName) {
@@ -89,6 +90,10 @@ ElevenLabs.prototype.textToSpeech = async function({
             },
             responseType: "stream",
         });
+
+        if(!downloadFile){
+            return response.data;
+        }
 
         response.data.pipe(fs.createWriteStream(fileName));
 
